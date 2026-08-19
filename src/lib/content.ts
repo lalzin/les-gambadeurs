@@ -86,6 +86,8 @@ export const piliers = [
  * affiche « Sur demande ».
  */
 export type Prestation = {
+  /** identifiant stable : deux prestations peuvent porter le même nom */
+  id: string;
   nom: string;
   detail: string;
   duree?: string;
@@ -96,22 +98,30 @@ export type Prestation = {
 
 export const prestationsGarde: Prestation[] = [
   {
+    id: "visite-30",
     nom: "Visite à domicile",
     detail:
-      "Repas, eau fraîche, litière ou sortie hygiénique, jeu et câlins. Pour les chats, les NAC et les chiens autonomes.",
+      "Repas, eau fraîche, litière ou sortie hygiénique, jeu et câlins. Pour les chiens, les chats et les NACs.",
     duree: "30 min",
     prix: null,
-    inclus: ["Compte rendu photo à chaque passage", "Relevé des quantités mangées et bues", "Arrosage des plantes & courrier"],
+    inclus: ["Compte rendu photo à chaque passage", "Relevé des quantités mangées et bues"],
   },
   {
-    nom: "Visite longue",
+    id: "visite-60",
+    nom: "Visite à domicile",
     detail:
-      "Le même soin, avec du temps en plus : enrichissement, brossage, séance de jeu structurée, surveillance d'un traitement.",
+      "Le même soin, avec du temps en plus : enrichissement, brossage, séance de jeu structurée, surveillance d'un traitement. Pour les chiens, les chats et les NACs.",
     duree: "1 h",
     prix: null,
-    inclus: ["Compte rendu photo détaillé", "Administration de traitements", "Enrichissement adapté à l'espèce"],
+    inclus: [
+      "Compte rendu photo à chaque passage",
+      "Relevé des quantités mangées et bues",
+      "Administration de traitements",
+      "Enrichissement adapté à l'espèce",
+    ],
   },
   {
+    id: "promenade",
     nom: "Promenade",
     detail:
       "Une sortie pensée pour la dépense réelle du chien : reniflage, exploration, rythme choisi selon son âge et son état de forme.",
@@ -120,20 +130,41 @@ export const prestationsGarde: Prestation[] = [
     inclus: ["Parcours adapté à l'âge et au gabarit", "Retour lavé et séché si besoin", "Compte rendu de balade"],
   },
   {
-    nom: "Garde à votre domicile",
+    id: "pension",
+    nom: "Pension",
     detail:
-      "Votre animal reste chez lui, dans ses repères. Présence en journée, ou séjour complet nuits comprises.",
+      "Votre animal est accueilli à mon domicile, comme un membre à part entière de ma famille. Proposée à la demi-journée, journée complète, nuitée ou séjour de plusieurs jours ou nuits. Pour les chiens et les NACs uniquement.",
     duree: "Journée ou séjour",
     prix: null,
-    inclus: ["Maintien intégral des habitudes", "Nouvelles quotidiennes", "Maison occupée pendant votre absence"],
+    inclus: [
+      "Nouvelles quotidiennes (photos et messages)",
+      "Sorties, jeux et présence continue",
+      "Espace individuel mis à sa disposition et adapté à ses besoins",
+      "Lien social maintenu",
+    ],
   },
   {
-    nom: "Transport & accompagnement",
+    id: "transport",
+    nom: "Transport et accompagnement",
     detail:
       "Rendez-vous vétérinaire, toiletteur, gare : un trajet calme, avec le temps de rassurer avant et après.",
     duree: "Sur mesure",
     prix: null,
     inclus: ["Véhicule aménagé", "Restitution du compte rendu vétérinaire", "Transport en caisse sécurisée"],
+  },
+  {
+    id: "coup-de-frais",
+    nom: "Coup de frais",
+    detail:
+      "Votre logement veillé pendant votre absence : arrosage des plantes, relève du courrier, aération, nourrissage des poissons.",
+    duree: "Sur mesure",
+    prix: null,
+    inclus: [
+      "Arrosage des plantes",
+      "Relève du courrier",
+      "Aération du logement",
+      "Nourrissage des poissons",
+    ],
   },
 ];
 
@@ -198,6 +229,7 @@ export const offreLancement = {
 
 export const prestationsAdoption: Prestation[] = [
   {
+    id: "premier-echange",
     nom: "Premier échange",
     detail:
       "Par téléphone. On fait connaissance, vous racontez votre projet, je vous dis franchement ce qui est réaliste et ce qui ne l'est pas.",
@@ -207,6 +239,7 @@ export const prestationsAdoption: Prestation[] = [
     inclus: ["Sans engagement", "Vos envies, votre calendrier", "Premières orientations"],
   },
   {
+    id: "entretien",
     nom: "Entretien découverte",
     detail:
       "À votre domicile. On analyse votre mode de vie, votre logement, votre entourage, votre budget et votre disponibilité réelle.",
@@ -216,6 +249,7 @@ export const prestationsAdoption: Prestation[] = [
     inclus: ["Visite du lieu de vie", "Analyse du rythme quotidien", "Questions ouvertes, réponses honnêtes"],
   },
   {
+    id: "compte-rendu",
     nom: "Compte rendu & suggestions sur mesure",
     detail:
       "Sous forme de livret : les espèces, races et profils qui correspondent vraiment à votre situation, et ceux à éviter.",
@@ -225,6 +259,7 @@ export const prestationsAdoption: Prestation[] = [
     inclus: ["Livret personnalisé", "Profils compatibles argumentés", "Budget réel à prévoir"],
   },
   {
+    id: "guide-accueil",
     nom: "Guide d'accueil personnalisé",
     detail:
       "Le mode d'emploi de vos premiers mois ensemble : matériel, alimentation, éducation, carnet d'adresses local et suivi.",

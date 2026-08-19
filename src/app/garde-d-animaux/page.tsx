@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Annotation from "@/components/Annotation";
-import { Champ, Epi, Patte } from "@/components/Botanique";
+import { Epi, Patte } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
 import {
   BandeauRdv,
@@ -10,7 +10,7 @@ import {
   PhotoArche,
   TitreSection,
 } from "@/components/Ui";
-import { communes, gardeDeroule, photos, prestationsGarde } from "@/lib/content";
+import { gardeDeroule, photos, prestationsGarde } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -64,21 +64,22 @@ export default function GardeAnimaux() {
       <section className="mx-auto max-w-[1240px] px-5 pt-16 sm:px-8 sm:pt-24">
         <TitreSection
           surtitre="Les prestations"
-          titre="Ce que je peux prendre en charge."
+          titre="Ce que je propose."
           intro="Chaque formule s'adapte à l'espèce, à l'âge et au caractère de votre animal. La fréquence, la durée et le tarif se calent lors du premier échange, qui est offert."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {prestationsGarde.map((p, i) => (
-            <CartePrestation key={p.nom} p={p} index={i} />
+            <CartePrestation key={p.id} p={p} index={i} />
           ))}
         </div>
 
         <Reveal delai={120}>
           <div className="mt-10 flex flex-col items-start gap-6 rounded-[26px] border border-dashed border-sable/50 bg-creme/50 p-7 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-xl text-[15px] leading-relaxed text-encre/75">
-              <strong className="font-medium text-brun">Les tarifs sont établis sur mesure</strong> selon
-              le nombre de passages, la durée et les particularités de votre animal (traitement,
+              En cas de demande particulière ou de récurrence,{" "}
+              <strong className="font-medium text-brun">les tarifs pourront être établis sur mesure</strong>{" "}
+              selon le nombre de passages, la durée et les particularités de votre animal (traitement,
               convalescence, plusieurs animaux au foyer). Un devis clair vous est envoyé avant toute
               réservation.
             </p>
@@ -121,7 +122,7 @@ export default function GardeAnimaux() {
           <div>
             <TitreSection
               surtitre="Toujours compris"
-              titre="Le confort, mais aussi les yeux ouverts."
+              titre="Les choyer, mais aussi les observer."
               intro="Nourrir et sortir un animal, c'est le minimum. Le reste du temps, j'observe : appétit, démarche, propreté, humeur. Ce sont ces détails qui permettent de repérer tôt ce qui cloche."
             />
             <ul className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -132,6 +133,8 @@ export default function GardeAnimaux() {
                 "Surveillance de l'appétit et du transit",
                 "Jeu et enrichissement adaptés à l'espèce",
                 "Courrier, volets, plantes si besoin",
+                "Vérification du pelage après sorties (tique, épillet, etc.)",
+                "Évaluation du comportement global",
               ].map((i) => (
                 <Reveal key={i} as="li" className="flex items-start gap-3 text-[15px] text-encre/80">
                   <Patte className="mt-1 h-4 w-4 shrink-0 text-olive" />
@@ -157,48 +160,6 @@ export default function GardeAnimaux() {
       </section>
 
       {/* ============================================================ */}
-      {/* ZONE                                                         */}
-      {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-mousse py-24 text-creme">
-        <div className="absolute inset-x-0 bottom-0 h-28 opacity-25">
-          <Champ className="h-full w-full" densite={22} />
-        </div>
-        <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <p className="surtitre text-tendre">Communes desservies</p>
-              <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
-                Autour de {site.zone.ville}, dans un rayon de {site.zone.rayonKm} km.
-              </h2>
-              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-creme/75">
-                Au-delà de {site.zone.rayonKm} km au départ de {site.zone.ville}, une indemnité
-                kilométrique de {site.zone.indemniteKm} supplémentaire est appliquée. Votre commune n&apos;est
-                pas dans la liste ? Demandez, on trouve souvent une solution.
-              </p>
-              <div className="mt-9">
-                <Bouton href="/contact" variante="clair">
-                  Vérifier ma commune
-                </Bouton>
-              </div>
-            </div>
-
-            <Reveal delai={100}>
-              <ul className="flex flex-wrap gap-2.5">
-                {communes.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-full border border-creme/20 px-4 py-2 text-[13px] text-creme/80"
-                  >
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
       {/* RENVOI VERS LA FAQ                                           */}
       {/* ============================================================ */}
       <section className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-28">
@@ -206,7 +167,7 @@ export default function GardeAnimaux() {
           <div>
             <p className="surtitre">Questions fréquentes</p>
             <h2 className="titre mt-3 text-[26px]">
-              Traitements, communes, délais de réservation&nbsp;?
+              Traitements, délais de réservation&nbsp;?
             </h2>
             <p className="prose-gambadeurs mt-3 max-w-xl text-[15.5px]">
               Les réponses aux questions les plus posées sur la garde sont regroupées dans la FAQ.
@@ -220,7 +181,7 @@ export default function GardeAnimaux() {
 
       <BandeauRdv
         titre="Vous partez bientôt ?"
-        texte="Racontez-moi vos dates et votre animal. Le premier échange téléphonique est offert, et sans engagement."
+        texte="Parlez-moi de vos besoins et de votre animal. Le premier échange téléphonique est offert, et sans engagement."
       />
 
       <script

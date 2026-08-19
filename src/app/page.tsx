@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Annotation from "@/components/Annotation";
-import { Champ, Collines, Epi, Patte, Tournesol } from "@/components/Botanique";
+import { Champ, Collines, Epi, Tournesol } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
-import { BandeauRdv, Bouton, PhotoArche, TitreSection } from "@/components/Ui";
-import { communes, introAccueil, manifeste, manifesteChute, photos, piliers } from "@/lib/content";
+import { Bouton, PhotoArche, TitreSection } from "@/components/Ui";
+import { introAccueil, manifeste, manifesteChute, photos, piliers } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -83,20 +83,6 @@ export default function Accueil() {
               </h1>
             </Reveal>
 
-            <Reveal delai={180}>
-              <ul className="mt-8 flex flex-wrap items-center gap-2.5">
-                {["Chiens", "Chats", "NAC"].map((e) => (
-                  <li
-                    key={e}
-                    className="flex items-center gap-2 rounded-full border border-brun/15 bg-papier/70 px-4 py-2 text-[13px] text-brun backdrop-blur-sm"
-                  >
-                    <Patte className="h-3.5 w-3.5 text-olive" />
-                    {e}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
             <Reveal delai={260}>
               <div className="mt-11 flex flex-wrap items-center gap-4">
                 <Bouton href={site.contact.calendly} externe>
@@ -171,7 +157,7 @@ export default function Accueil() {
 
           <div className="lg:pt-8">
             <TitreSection
-              surtitre="La maison"
+              surtitre="Une mission"
               titre={
                 <>
                   Améliorer le quotidien de nos animaux, <span className="souligne">et le vôtre</span>.
@@ -204,7 +190,7 @@ export default function Accueil() {
           surtitre="Deux façons de vous accompagner"
           titre="Pendant votre absence, et bien avant."
           align="center"
-          intro="Garder un animal, c'est veiller sur lui. L'accompagner, c'est faire en sorte que sa vie entière lui convienne. Les Gambadeurs fait les deux."
+          intro="Garder un animal, c'est veiller sur lui. Vous accompagner, c'est faire en sorte que sa vie entière réponde avec ses besoins. Les Gambadeurs fait les deux."
         />
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
@@ -262,6 +248,23 @@ export default function Accueil() {
       </section>
 
       {/* ============================================================ */}
+      {/* PILIERS                                                      */}
+      {/* ============================================================ */}
+      <section className="mx-auto max-w-[1240px] px-5 py-28 sm:px-8 sm:py-32">
+        <TitreSection surtitre="Notre façon de faire" titre="Trois convictions, appliquées tous les jours." />
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {piliers.map((p, i) => (
+            <Reveal key={p.titre} delai={i * 110} className="relative">
+              <span className="titre block text-[46px] text-lin">0{i + 1}</span>
+              <h3 className="titre mt-3 text-[22px]">{p.titre}</h3>
+              <p className="prose-gambadeurs mt-4 text-[15.5px]">{p.texte}</p>
+              <span className="filet mt-8 block w-16" />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* MANIFESTE                                                    */}
       {/* ============================================================ */}
       <section className="relative mt-32 overflow-hidden bg-brun py-28 text-creme sm:py-36">
@@ -296,23 +299,6 @@ export default function Accueil() {
               {manifesteChute}
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* PILIERS                                                      */}
-      {/* ============================================================ */}
-      <section className="mx-auto max-w-[1240px] px-5 py-28 sm:px-8 sm:py-32">
-        <TitreSection surtitre="Notre façon de faire" titre="Trois convictions, appliquées tous les jours." />
-        <div className="mt-16 grid gap-10 md:grid-cols-3">
-          {piliers.map((p, i) => (
-            <Reveal key={p.titre} delai={i * 110} className="relative">
-              <span className="titre block text-[46px] text-lin">0{i + 1}</span>
-              <h3 className="titre mt-3 text-[22px]">{p.titre}</h3>
-              <p className="prose-gambadeurs mt-4 text-[15.5px]">{p.texte}</p>
-              <span className="filet mt-8 block w-16" />
-            </Reveal>
-          ))}
         </div>
       </section>
 
@@ -358,56 +344,6 @@ export default function Accueil() {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* ZONE D'INTERVENTION                                          */}
-      {/* ============================================================ */}
-      <section className="mx-auto max-w-[1240px] px-5 py-28 sm:px-8 sm:py-32">
-        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <TitreSection
-              surtitre="Zone d'intervention"
-              titre={
-                <>
-                  Autour de Vignoc, <br className="hidden sm:block" />
-                  partout en Ille-et-Vilaine.
-                </>
-              }
-              intro={
-                <>
-                  Les prestations de conseil à l&apos;adoption sont proposées sur l&apos;ensemble du
-                  département. Au-delà de {site.zone.rayonKm} km au départ de {site.zone.ville}, une
-                  indemnité kilométrique de {site.zone.indemniteKm} supplémentaire est appliquée.
-                </>
-              }
-            />
-            <Reveal delai={140}>
-              <div className="mt-10">
-                <Bouton href="/contact" variante="ligne">
-                  Vérifier ma commune
-                </Bouton>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delai={120}>
-            <ul className="flex flex-wrap gap-2.5">
-              {communes.map((c) => (
-                <li
-                  key={c}
-                  className="rounded-full border border-brun/12 bg-papier px-4 py-2 text-[13px] text-encre/75 transition-colors hover:border-olive hover:text-brun"
-                >
-                  {c}
-                </li>
-              ))}
-              <li className="rounded-full bg-tendre/60 px-4 py-2 text-[13px] text-mousse">
-                et les communes alentour
-              </li>
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      <BandeauRdv />
     </>
   );
 }

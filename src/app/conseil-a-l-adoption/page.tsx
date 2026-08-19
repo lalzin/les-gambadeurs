@@ -120,7 +120,7 @@ export default function ConseilAdoption() {
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {prestationsAdoption.map((p, i) => (
-              <CartePrestation key={p.nom} p={p} index={i} promo={offreLancement.actif} />
+              <CartePrestation key={p.id} p={p} index={i} promo={offreLancement.actif} />
             ))}
           </div>
 
