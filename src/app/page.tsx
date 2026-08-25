@@ -190,7 +190,7 @@ export default function Accueil() {
           surtitre="Deux façons de vous accompagner"
           titre="Pendant votre absence, et bien avant."
           align="center"
-          intro="Garder un animal, c'est veiller sur lui. Vous accompagner, c'est faire en sorte que sa vie entière réponde avec ses besoins. Les Gambadeurs fait les deux."
+          intro="Garder un animal, c'est veiller sur lui. Vous accompagner, c'est faire en sorte que sa vie entière réponde à ses besoins. Les Gambadeurs fait les deux."
         />
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
@@ -200,7 +200,7 @@ export default function Accueil() {
               surtitre: "En votre absence",
               titre: "Garde d'animaux",
               texte:
-                "Visites à domicile, promenades, séjours complets. Votre animal reste dans ses repères, garde ses habitudes, et vous recevez des nouvelles à chaque passage.",
+                "Visites à domicile, promenades, séjours en pension. Votre animal reste dans ses repères, garde ses habitudes, et vous recevez des nouvelles régulières en temps réel.",
               photo: photos.zen,
               position: "50% 40%",
             },
@@ -209,7 +209,7 @@ export default function Accueil() {
               surtitre: "Avant l'adoption",
               titre: "Conseil à l'adoption",
               texte:
-                "Avant de choisir, on regarde votre vie en face : logement, rythme, budget, entourage. Pour que l'animal qui arrive soit le bon, et qu'il reste.",
+                "Avant de choisir, on regarde votre vie en face : logement, rythme, budget, environnement. Pour que l'animal qui arrive dans votre vie soit le bon, et qu'il reste.",
               photo: photos.udonRepos,
               position: "55% 45%",
             },
@@ -265,44 +265,6 @@ export default function Accueil() {
       </section>
 
       {/* ============================================================ */}
-      {/* MANIFESTE                                                    */}
-      {/* ============================================================ */}
-      <section className="relative mt-32 overflow-hidden bg-brun py-28 text-creme sm:py-36">
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 opacity-25">
-          <Champ className="h-full w-full" densite={24} />
-        </div>
-
-        <div className="relative mx-auto max-w-[900px] px-5 text-center sm:px-8">
-          <Reveal>
-            <p className="surtitre text-sable">Notre manifeste</p>
-            <h2 className="titre mt-6 text-[clamp(2.2rem,5vw,3.4rem)] text-creme">
-              Aimer ne signifie pas toujours comprendre.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 space-y-9">
-            {manifeste.map((strophe, i) => (
-              <Reveal key={i} delai={i * 70}>
-                <p className="text-[16.5px] leading-[1.85] text-creme/78 sm:text-[17.5px]">
-                  {strophe.map((ligne, j) => (
-                    <span key={j} className="block text-balance">
-                      {ligne}
-                    </span>
-                  ))}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delai={200}>
-            <p className="mt-16 font-hand text-[clamp(1.7rem,3.6vw,2.5rem)] leading-tight text-tendre">
-              {manifesteChute}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
       {/* GALERIE                                                      */}
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-creme py-28 sm:py-32">
@@ -341,6 +303,44 @@ export default function Accueil() {
               />
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MANIFESTE                                                    */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-mousse py-28 text-creme sm:py-36">
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 opacity-25">
+          <Champ className="h-full w-full" densite={24} />
+        </div>
+
+        <div className="relative mx-auto max-w-[900px] px-5 text-center sm:px-8">
+          <Reveal>
+            <p className="surtitre text-tendre">Notre manifeste</p>
+            <h2 className="titre mt-6 text-[clamp(2.2rem,5vw,3.4rem)] text-creme">
+              Aimer ne signifie pas toujours comprendre.
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 space-y-9">
+            {manifeste.map((strophe, i) => (
+              <Reveal key={i} delai={i * 70}>
+                <p className="text-[16.5px] leading-[1.85] text-creme/78 sm:text-[17.5px]">
+                  {strophe.map((ligne, j) => (
+                    <span key={j} className="block text-balance">
+                      {ligne}
+                    </span>
+                  ))}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delai={200}>
+            <p className="mt-16 font-hand text-[clamp(1.7rem,3.6vw,2.5rem)] leading-tight text-tendre">
+              {manifesteChute}
+            </p>
+          </Reveal>
         </div>
       </section>
 

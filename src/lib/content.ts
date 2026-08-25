@@ -64,12 +64,12 @@ export const piliers = [
   {
     titre: "Des besoins biologiques d'abord",
     texte:
-      "Alimentation, sommeil, exploration, contacts sociaux : on part de ce dont l'espèce a réellement besoin avant de parler de dressage ou d'accessoires.",
+      "Alimentation, sommeil, exploration, contacts sociaux : on part de ce dont l'espèce a biologiquement besoin avant de parler de dressage ou d'accessoires.",
   },
   {
     titre: "Un accompagnement qui dure",
     texte:
-      "De l'adoption au grand âge, on vous transmet les repères pour décider sereinement, seul.e, la prochaine fois.",
+      "De l'adoption au grand âge, on vous transmet les repères pour décider sereinement, et être en mesure de solutionner les problématiques individuelles liées à votre animal ou votre situation.",
   },
 ];
 
@@ -133,7 +133,7 @@ export const prestationsGarde: Prestation[] = [
     id: "pension",
     nom: "Pension",
     detail:
-      "Votre animal est accueilli à mon domicile, comme un membre à part entière de ma famille. Proposée à la demi-journée, journée complète, nuitée ou séjour de plusieurs jours ou nuits. Pour les chiens et les NACs uniquement.",
+      "Votre animal est accueilli à mon domicile, comme un membre à part entière de ma famille. Proposée à la demi-journée, journée complète, nuitée ou séjour de plusieurs jours. Pour les chiens et les NACs uniquement.",
     duree: "Journée ou séjour",
     prix: null,
     inclus: [
@@ -154,9 +154,8 @@ export const prestationsGarde: Prestation[] = [
   },
   {
     id: "coup-de-frais",
-    nom: "Coup de frais",
-    detail:
-      "Votre logement veillé pendant votre absence : arrosage des plantes, relève du courrier, aération, nourrissage des poissons.",
+    nom: "« Coup de frais »",
+    detail: "Votre logement veillé pendant votre absence.",
     duree: "Sur mesure",
     prix: null,
     inclus: [
@@ -181,7 +180,7 @@ export const gardeDeroule = [
   {
     titre: "Vous partez tranquille",
     texte:
-      "Chaque passage donne lieu à un compte rendu avec photos. Vous savez comment il va, sans avoir à demander.",
+      "Chaque passage ou journée en pension donne lieu à un compte rendu avec photos. Vous savez comment il va, sans avoir à demander.",
   },
   {
     titre: "On débriefe",

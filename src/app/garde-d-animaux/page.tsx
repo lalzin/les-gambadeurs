@@ -123,16 +123,11 @@ export default function GardeAnimaux() {
             <TitreSection
               surtitre="Toujours compris"
               titre="Les choyer, mais aussi les observer."
-              intro="Nourrir et sortir un animal, c'est le minimum. Le reste du temps, j'observe : appétit, démarche, propreté, humeur. Ce sont ces détails qui permettent de repérer tôt ce qui cloche."
+              intro="Nourrir et sortir un animal, c'est le minimum. Le reste du temps, j'observe : appétit, démarche, propreté, humeur. Ce sont ces détails qui permettent de repérer tôt si quelque chose cloche."
             />
             <ul className="mt-10 grid gap-4 sm:grid-cols-2">
               {[
-                "Compte rendu avec photos à chaque passage",
-                "Respect strict des habitudes de la maison",
-                "Administration des traitements",
                 "Surveillance de l'appétit et du transit",
-                "Jeu et enrichissement adaptés à l'espèce",
-                "Courrier, volets, plantes si besoin",
                 "Vérification du pelage après sorties (tique, épillet, etc.)",
                 "Évaluation du comportement global",
               ].map((i) => (
