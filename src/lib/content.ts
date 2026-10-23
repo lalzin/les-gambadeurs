@@ -125,7 +125,7 @@ export const prestationsGarde: Prestation[] = [
     nom: "Promenade",
     detail:
       "Une sortie pensée pour la dépense réelle du chien : reniflage, exploration, rythme choisi selon son âge et son état de forme.",
-    duree: "45 min à 1 h",
+    duree: "30 min à 1 h",
     prix: null,
     inclus: ["Parcours adapté à l'âge et au gabarit", "Retour lavé et séché si besoin", "Compte rendu de balade"],
   },
@@ -192,15 +192,15 @@ export const gardeDeroule = [
 export const faqGarde = [
   {
     q: "Quels animaux gardez-vous ?",
-    r: "Chiens, chats et NAC (nouveaux animaux de compagnie) : lapins, cochons d'Inde, rongeurs, furets, oiseaux, reptiles et poissons. Chaque espèce a des besoins spécifiques, et c'est justement le point de départ de notre travail.",
+    r: "Chiens, chats et NAC (nouveaux animaux de compagnie d'espèces domestiques) : lapins, cochons d'Inde, rongeurs, furets, oiseaux, amphibiens et poissons. Chaque espèce a des besoins spécifiques, et c'est justement le point de départ de notre travail. Je ne prends pas en charge les NAC d'espèces non domestiques (serpent, oiseau exotique, mygale, etc.), qui nécessitent une formation spécifique et dont le cadre légal est très différent.",
   },
   {
     q: "Où intervenez-vous ?",
-    r: `Au départ de Vignoc, dans un rayon d'environ 30 km : le bassin de Rennes Nord, le pays de Bécherel, Tinténiac, Hédé-Bazouges, Betton, Melesse et les communes alentour. Au-delà de 30 km, une indemnité kilométrique de 0,665 €/km supplémentaire est appliquée.`,
+    r: "Pour la garde d'animaux à votre domicile, au départ de Vignoc, dans un rayon d'environ 15 km : c'est-à-dire toute la périphérie nord de Rennes (La Mézière, La Chapelle-des-Fougeretz, Hédé-Bazouges, Tinténiac, Melesse, Saint-Grégoire, Montgermont, et autres communes alentour). Au-delà de 15 km, une indemnité kilométrique de 0,665 €/km supplémentaire est appliquée.",
   },
   {
     q: "Mon animal suit un traitement, est-ce un problème ?",
-    r: "Non. L'administration de traitements par voie orale, cutanée ou en injection sous-cutanée (diabète, insuffisance rénale) est possible : nous en parlons lors de la rencontre à domicile et le protocole est noté noir sur blanc.",
+    r: "Non. L'administration de traitements par voie orale ou cutanée (traitement des insuffisances rénales, hypertensions, dermatites, parasites...) est possible : nous en parlons lors de la rencontre à domicile et le protocole est noté noir sur blanc. L'administration de médicaments par voie parentérale (comme les injections) est un acte de médecine vétérinaire que je ne suis pas habilitée à pratiquer.",
   },
   {
     q: "Comment recevez-vous des nouvelles ?",
@@ -220,10 +220,17 @@ export const faqGarde = [
 /* CONSEIL À L'ADOPTION — source : brochure tarifaire officielle        */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Offre de lancement. Elle s'éteint d'elle-même après `finLe` : plus de prix
+ * barrés ni de mention « -40 % ». Le site étant pré-rendu, la date est évaluée
+ * à chaque déploiement — pour prolonger une offre, modifier `finLe` et redéployer.
+ */
+const FIN_OFFRE = "2026-08-31T23:59:59+02:00";
 export const offreLancement = {
-  actif: true,
+  actif: Date.now() <= new Date(FIN_OFFRE).getTime(),
   remise: "-40 %",
   jusquau: "31 août 2026",
+  finLe: FIN_OFFRE,
 };
 
 export const prestationsAdoption: Prestation[] = [
@@ -290,7 +297,7 @@ export const adoptionPourquoi = [
 export const faqAdoption = [
   {
     q: "À quel moment faut-il vous appeler ?",
-    r: "Le plus tôt possible : idéalement avant même d'avoir choisi une espèce ou une race, et en tout cas avant de contacter un éleveur ou un refuge. C'est là que l'accompagnement change vraiment quelque chose.",
+    r: "Le plus tôt possible : idéalement avant même d'avoir choisi une espèce ou une race, et en tout cas avant de contacter un éleveur ou un refuge. C'est là que l'accompagnement change vraiment quelque chose. Si l'adoption est déjà en cours mais qu'il subsiste des questions, des doutes, un besoin de se faire accompagner : c'est possible aussi.",
   },
   {
     q: "Vous vendez ou placez des animaux ?",
@@ -302,15 +309,17 @@ export const faqAdoption = [
   },
   {
     q: "Je veux un NAC, vous vous y connaissez ?",
-    r: "Oui : lapins, cochons d'Inde, rongeurs, furets, oiseaux, reptiles. Ce sont souvent les espèces les plus mal accueillies, parce que leurs besoins réels (espace, congénères, température, alimentation) sont très éloignés de ce qu'on trouve en animalerie.",
+    r: "Oui : lapins, cochons d'Inde, rongeurs, furets, oiseaux, amphibiens. Ce sont souvent les espèces les plus mal accueillies, parce que leurs besoins réels (espace, congénères, température, alimentation) sont très éloignés de ce qu'on trouve en animalerie.",
   },
   {
     q: "Combien coûte l'accompagnement complet ?",
-    r: "Le premier échange téléphonique est offert. Le parcours complet (entretien découverte, livret de suggestions et guide d'accueil) revient à 140 €, ramenés à 84 € pendant l'offre de lancement, jusqu'au 31 août 2026. Chaque étape reste indépendante.",
+    r: `Le premier échange téléphonique est offert. Le parcours complet (entretien découverte, livret de suggestions et guide d'accueil) revient à 140 €${
+      offreLancement.actif ? `, ramenés à 84 € pendant l'offre de lancement, jusqu'au ${offreLancement.jusquau}` : ""
+    }. Chaque étape reste indépendante.`,
   },
   {
-    q: "J'ai déjà un animal à la maison, ça change quoi ?",
-    r: "Beaucoup. La compatibilité entre le résident et le nouvel arrivant, son espèce, son âge, son sexe, son tempérament, son territoire, fait partie intégrante de l'analyse, tout comme le protocole de présentation des premiers jours.",
+    q: "J'ai déjà un ou plusieurs animaux à la maison, ça change quoi ?",
+    r: "Beaucoup. La compatibilité entre le/les résident(s) et le nouvel arrivant, leur espèce, leur âge, leur sexe, leur tempérament, leur territoire, fait partie intégrante de l'analyse, tout comme le protocole de présentation des premiers jours.",
   },
 ];
 
@@ -323,6 +332,21 @@ export const faqAdoption = [
  * local. Elles se situent dans un rayon d'environ 30 km autour de Vignoc.
  * Ajoutez ou retirez librement : ces noms alimentent directement le SEO local.
  */
+/**
+ * Communes citées pour la garde d'animaux à domicile : rayon d'environ 15 km
+ * autour de Vignoc, liste donnée par la cliente (correctifs FAQ du 24/08/26).
+ */
+export const communesGarde = [
+  "Vignoc",
+  "La Mézière",
+  "La Chapelle-des-Fougeretz",
+  "Hédé-Bazouges",
+  "Tinténiac",
+  "Melesse",
+  "Saint-Grégoire",
+  "Montgermont",
+];
+
 export const communes = [
   "Vignoc",
   "Hédé-Bazouges",
@@ -360,11 +384,10 @@ export const communes = [
 export const fondatrice = {
   prenom: "", // ⚠️ ex. "Daphné" — laissé vide, le site s'adapte
   role: "Fondatrice des Gambadeurs",
-  accroche: "Il ne s'agit pas juste de les aimer, mais de les comprendre profondément.",
   paragraphes: [
     "J'ai grandi entourée d'animaux, et longtemps j'ai cru que les aimer suffisait. C'est en observant, en me formant, puis en accompagnant d'autres foyers que j'ai compris à quel point nos évidences d'humains passent souvent à côté de ce dont ils ont réellement besoin.",
     "Les Gambadeurs est née de ce constat : la plupart des difficultés du quotidien, qu'il s'agisse de malpropreté, de destruction, d'agitation ou d'un refus de s'alimenter, ne sont pas des caprices. Ce sont des besoins biologiques qui cherchent une sortie. Les comprendre, c'est régler le problème à la racine plutôt que d'empiler les astuces.",
-    "Aujourd'hui, je garde vos animaux quand vous vous absentez, et j'accompagne celles et ceux qui souhaitent adopter, pour que le choix soit juste dès le départ. Sans jugement, sans jargon, et toujours en marchant à côté de vous, jamais devant.",
+    "Aujourd'hui, je garde vos animaux quand vous vous absentez, je les observe et vous indique quelques ajustements personnalisés si besoin, et j'accompagne celles et ceux qui souhaitent adopter, pour que le choix soit juste dès le départ. Sans jugement, sans jargon.",
   ],
   competences: [
     {
@@ -393,12 +416,6 @@ export const fondatrice = {
         "Administration de traitements, surveillance des animaux âgés ou convalescents, repérage des signaux d'alerte.",
     },
   ],
-  // ⚠️ À COMPLÉTER — remplacer par les expériences réelles (structures, dates).
-  experiences: [
-    { periode: "Aujourd'hui", titre: "Les Gambadeurs", detail: "Garde d'animaux et conseil à l'adoption en Ille-et-Vilaine." },
-    { periode: "À compléter", titre: "Expérience à renseigner", detail: "Structure, missions, période." },
-    { periode: "À compléter", titre: "Formation à renseigner", detail: "Intitulé, organisme, année d'obtention." },
-  ],
 };
 
 /* ------------------------------------------------------------------ */
@@ -406,13 +423,24 @@ export const fondatrice = {
 /* ------------------------------------------------------------------ */
 
 export const photos = {
-  suzetteBalcon: { src: "/photos/suzette-3.jpg", alt: "Suzette, chienne noire au regard curieux, prête pour sa balade" },
-  suzettePortrait: { src: "/photos/suzette-1.jpg", alt: "Portrait en noir et blanc de Suzette, chienne attentive dans son panier" },
-  suzetteCanape: { src: "/photos/suzette-2.jpg", alt: "Suzette assoupie contre un coussin jaune, parfaitement détendue" },
-  joya: { src: "/photos/joya-1.jpg", alt: "Joya, petite chienne spitz, lovée dans les coussins" },
-  zen: { src: "/photos/zen-1.jpg", alt: "Zen, chat tigré, endormi sur l'accoudoir du canapé" },
+  // La fondatrice et ses gambadeurs, en extérieur
+  balade: { src: "/photos/balade-chemin.jpg", alt: "Balade en sous-bois avec Joya, petite chienne spitz, sur un chemin de campagne" },
+  riviere: { src: "/photos/bord-de-riviere.jpg", alt: "Pause au bord de la rivière avec une chienne noire, assises côte à côte" },
+  jeuPelouse: { src: "/photos/jeu-pelouse.jpg", alt: "Séance de jeu sur la pelouse avec une chienne noire" },
+  chatPelouse: { src: "/photos/chat-pelouse.jpg", alt: "Approche tout en douceur d'un chat tigré dans l'herbe" },
+  chatJardin: { src: "/photos/chat-jardin.jpg", alt: "Un chat tigré observé au jardin, à distance respectueuse" },
+  fondatriceJoya: { src: "/photos/fondatrice-joya.jpg", alt: "La fondatrice des Gambadeurs, assise avec Joya sur ses genoux" },
+  fondatriceChat: { src: "/photos/fondatrice-chat.jpg", alt: "La fondatrice des Gambadeurs, joue contre joue avec un chat persan" },
+  fondatriceTerrasse: { src: "/photos/fondatrice-terrasse.jpg", alt: "Moment calme sous la tonnelle avec Joya" },
+  fondatriceCalin: { src: "/photos/fondatrice-calin.jpg", alt: "Câlin avec Joya sous la tonnelle du jardin" },
+  // Les pensionnaires
+  suzette: { src: "/photos/suzette-1.jpg", alt: "Suzette, chienne noire, le regard levé et attentif" },
+  suzettePorte: { src: "/photos/suzette-2.jpg", alt: "Suzette assise au seuil de la porte du jardin" },
+  joya: { src: "/photos/joya-1.jpg", alt: "Joya, petite chienne spitz, bien installée dans son sac de transport" },
+  zen: { src: "/photos/zen-1.jpg", alt: "Zen, chat tigré, qui se lèche les babines" },
+  naya: { src: "/photos/naya-1.jpg", alt: "Naya, chatte tigrée, se roulant dans l'herbe au soleil" },
   udonRepos: { src: "/photos/udon-1.jpg", alt: "Udon, chat persan au long pelage, étendu de tout son long sur le parquet" },
-  udonArbre: { src: "/photos/udon-2.jpg", alt: "Udon observant son arbre à chat et ses jouets" },
+  udonArbre: { src: "/photos/udon-2.jpg", alt: "Udon au pied de son arbre à chat" },
   bountyPortrait: { src: "/photos/bounty-1.jpg", alt: "Bounty, chat noir et blanc, assis à l'angle du couloir" },
   bountyMarche: { src: "/photos/bounty-2.jpg", alt: "Bounty en pleine exploration de la cuisine" },
 } as const;

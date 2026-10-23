@@ -81,12 +81,10 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href={site.contact.calendly}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`tel:${site.contact.phoneHref}`}
             className="hidden rounded-full bg-terre px-5 py-2.5 text-[13px] font-medium text-creme transition-all duration-300 hover:bg-brun hover:shadow-[0_10px_28px_-12px_var(--color-brun)] sm:inline-block"
           >
-            Prendre rendez-vous
+            {site.contact.phone}
           </a>
 
           <button
@@ -132,12 +130,10 @@ export default function Header() {
             </Link>
           ))}
           <a
-            href={site.contact.calendly}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`tel:${site.contact.phoneHref}`}
             className="mt-5 block rounded-full bg-terre px-5 py-3.5 text-center text-sm text-creme"
           >
-            Prendre rendez-vous
+            Appeler le {site.contact.phone}
           </a>
         </nav>
       </div>

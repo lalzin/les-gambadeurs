@@ -50,7 +50,7 @@ export default function Accueil() {
             muted
             loop
             playsInline
-            poster={photos.suzetteBalcon.src}
+            poster={photos.balade.src}
           >
             <source src={site.heroVideo} type="video/mp4" />
           </video>
@@ -85,9 +85,7 @@ export default function Accueil() {
 
             <Reveal delai={260}>
               <div className="mt-11 flex flex-wrap items-center gap-4">
-                <Bouton href={site.contact.calendly} externe>
-                  Prendre rendez-vous
-                </Bouton>
+                <Bouton href="/contact">Me contacter</Bouton>
                 <Bouton href="/garde-d-animaux" variante="ligne">
                   Découvrir les prestations
                 </Bouton>
@@ -106,13 +104,13 @@ export default function Accueil() {
             <div className="relative mx-auto w-full max-w-[440px]">
               <div className="arche relative aspect-[4/5] w-full overflow-hidden bg-lin shadow-[0_60px_100px_-60px_var(--color-brun)]">
                 <Image
-                  src={photos.suzetteBalcon.src}
-                  alt={photos.suzetteBalcon.alt}
+                  src={photos.balade.src}
+                  alt={photos.balade.alt}
                   fill
                   priority
                   sizes="(max-width: 1024px) 88vw, 440px"
                   className="derive object-cover"
-                  style={{ objectPosition: "50% 62%" }}
+                  style={{ objectPosition: "50% 55%" }}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brun/30 via-transparent to-transparent" />
               </div>
@@ -142,8 +140,8 @@ export default function Accueil() {
           <Reveal className="relative">
             <div className="relative">
               <PhotoArche
-                src={photos.joya.src}
-                alt={photos.joya.alt}
+                src={photos.riviere.src}
+                alt={photos.riviere.alt}
                 className="aspect-[4/5] w-full max-w-[400px]"
                 sizes="(max-width: 1024px) 88vw, 400px"
               />
@@ -190,7 +188,6 @@ export default function Accueil() {
           surtitre="Deux façons de vous accompagner"
           titre="Pendant votre absence, et bien avant."
           align="center"
-          intro="Garder un animal, c'est veiller sur lui. Vous accompagner, c'est faire en sorte que sa vie entière réponde à ses besoins. Les Gambadeurs fait les deux."
         />
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
@@ -201,17 +198,17 @@ export default function Accueil() {
               titre: "Garde d'animaux",
               texte:
                 "Visites à domicile, promenades, séjours en pension. Votre animal reste dans ses repères, garde ses habitudes, et vous recevez des nouvelles régulières en temps réel.",
-              photo: photos.zen,
-              position: "50% 40%",
+              photo: photos.chatPelouse,
+              position: "50% 55%",
             },
             {
               href: "/conseil-a-l-adoption",
-              surtitre: "Avant l'adoption",
+              surtitre: "Avant, pendant et/ou après l'adoption",
               titre: "Conseil à l'adoption",
               texte:
                 "Avant de choisir, on regarde votre vie en face : logement, rythme, budget, environnement. Pour que l'animal qui arrive dans votre vie soit le bon, et qu'il reste.",
-              photo: photos.udonRepos,
-              position: "55% 45%",
+              photo: photos.jeuPelouse,
+              position: "50% 60%",
             },
           ].map((c, i) => (
             <Reveal key={c.href} delai={i * 130}>
@@ -273,19 +270,20 @@ export default function Accueil() {
             surtitre="Nos gambadeurs"
             titre="Ceux dont on prend soin."
             align="center"
-            intro="Suzette, Joya, Zen, Udon, Bounty… chacun avec ses manies, ses horaires et ses coins préférés."
+            intro="Suzette, Joya, Zen, Naya, Udon, Bounty… chacun avec ses manies, ses horaires et ses coins préférés."
           />
         </div>
 
         <div className="mt-14 flex gap-5 overflow-x-auto px-5 pb-6 sm:px-8 [scrollbar-width:thin]">
           {[
-            photos.suzettePortrait,
-            photos.udonArbre,
-            photos.bountyPortrait,
-            photos.suzetteCanape,
-            photos.zen,
-            photos.bountyMarche,
+            photos.suzette,
             photos.joya,
+            photos.zen,
+            photos.naya,
+            photos.bountyPortrait,
+            photos.udonArbre,
+            photos.suzettePorte,
+            photos.bountyMarche,
           ].map((p, i) => (
             <Reveal
               key={p.src}

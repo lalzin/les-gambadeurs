@@ -188,7 +188,7 @@ export function CartePrestation({
 
 export function BandeauRdv({
   titre = "On en parle ?",
-  texte = "Le premier échange téléphonique est offert, sans engagement. Racontez-moi votre animal, vos dates, vos doutes.",
+  texte = "Parlez-moi de votre animal, de vos dates, de vos doutes. Un simple échange téléphonique ne vous engage à rien !",
 }: {
   titre?: string;
   texte?: string;
@@ -208,17 +208,13 @@ export function BandeauRdv({
           <p className="surtitre text-tendre">Contact</p>
           <h2 className="titre mt-5 text-[clamp(2.2rem,5vw,3.6rem)] text-creme">{titre}</h2>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-creme/80">{texte}</p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Bouton href={site.contact.calendly} externe variante="clair">
-              Réserver un créneau
-            </Bouton>
-            <a
-              href={`tel:${site.contact.phoneHref}`}
-              className="rounded-full border border-creme/30 px-6 py-3.5 text-[14px] transition-colors hover:border-creme hover:bg-creme/10"
-            >
-              {site.contact.phone}
-            </a>
-          </div>
+          {/* Numéro seul, dans la police des titres : plus d'effet bouton. */}
+          <a
+            href={`tel:${site.contact.phoneHref}`}
+            className="titre mt-9 inline-block text-[clamp(2rem,4.4vw,2.8rem)] text-creme transition-colors hover:text-tendre"
+          >
+            {site.contact.phone}
+          </a>
         </Reveal>
       </div>
     </section>
@@ -241,7 +237,8 @@ export function EntetePage({
 }: {
   surtitre: string;
   titre: string;
-  intro: string;
+  /** facultatif ; un ReactNode permet plusieurs paragraphes */
+  intro?: ReactNode;
   photo: string;
   photoAlt: string;
   photoPosition?: string;
@@ -267,7 +264,7 @@ export function EntetePage({
               <span className="filet w-12" />
             </p>
             <h1 className="titre mt-6 text-[clamp(2.6rem,6.4vw,4.6rem)]">{titre}</h1>
-            <p className="prose-gambadeurs mt-7 max-w-xl text-[18px]">{intro}</p>
+            {intro && <div className="prose-gambadeurs mt-7 max-w-xl text-[18px]">{intro}</div>}
           </Reveal>
         </div>
         <Reveal delai={140} className="relative">
@@ -301,7 +298,7 @@ export function Faq({
 }: {
   items: { q: string; r: string }[];
   surtitre?: string;
-  titre?: string;
+  titre?: ReactNode;
   className?: string;
   /** À désactiver quand plusieurs FAQ cohabitent : un seul FAQPage par page. */
   avecSchema?: boolean;

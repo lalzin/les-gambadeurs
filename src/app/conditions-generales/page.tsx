@@ -57,9 +57,10 @@ export default function ConditionsGenerales() {
 
       <BlocTexte titre="3. Tarifs et frais de déplacement">
         <p>
-          Les tarifs applicables sont ceux communiqués sur le devis. Au-delà de{" "}
-          {site.zone.rayonKm} km au départ de {site.zone.ville}, une indemnité kilométrique de{" "}
-          {site.zone.indemniteKm} supplémentaire est facturée.
+          Les tarifs applicables sont ceux communiqués sur le devis. Une indemnité kilométrique de{" "}
+          {site.zone.indemniteKm} supplémentaire est facturée au-delà de {site.zone.rayonGardeKm} km
+          au départ de {site.zone.ville} pour la garde d&apos;animaux, et au-delà de{" "}
+          {site.zone.rayonKm} km pour le conseil à l&apos;adoption.
         </p>
         <p>
           {entreprise.tva.trim()

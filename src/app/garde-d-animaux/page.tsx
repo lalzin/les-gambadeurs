@@ -52,10 +52,10 @@ export default function GardeAnimaux() {
         surtitre="En votre absence"
         titre="Garde d'animaux"
         href="/garde-d-animaux"
-        intro="Votre animal reste chez lui, dans ses odeurs, ses horaires et ses habitudes. Je passe, je m'occupe de tout, et vous savez exactement comment il va, sans avoir à demander."
-        photo={photos.zen.src}
-        photoAlt={photos.zen.alt}
-        photoPosition="50% 38%"
+        intro="Votre animal reste chez lui, dans ses odeurs, avec ses horaires et ses habitudes. Je passe, je m'occupe de tout, et vous savez exactement comment il va, sans avoir à demander."
+        photo={photos.suzettePorte.src}
+        photoAlt={photos.suzettePorte.alt}
+        photoPosition="60% 50%"
       />
 
       {/* ============================================================ */}
@@ -83,9 +83,21 @@ export default function GardeAnimaux() {
               convalescence, plusieurs animaux au foyer). Un devis clair vous est envoyé avant toute
               réservation.
             </p>
-            <Bouton href={site.contact.calendly} externe className="shrink-0">
-              Demander un devis
-            </Bouton>
+            {/* Coordonnées directes à la place du bouton « Demander un devis » */}
+            <div className="shrink-0 space-y-1.5 sm:text-right">
+              <a
+                href={`tel:${site.contact.phoneHref}`}
+                className="titre block text-[24px] transition-colors hover:text-terre"
+              >
+                {site.contact.phone}
+              </a>
+              <a
+                href={`mailto:${site.contact.email}`}
+                className="block text-[14.5px] text-terre underline-offset-4 hover:underline"
+              >
+                {site.contact.email}
+              </a>
+            </div>
           </div>
         </Reveal>
       </section>
@@ -141,8 +153,8 @@ export default function GardeAnimaux() {
 
           <Reveal delai={150} className="relative">
             <PhotoArche
-              src={photos.bountyPortrait.src}
-              alt={photos.bountyPortrait.alt}
+              src={photos.suzette.src}
+              alt={photos.suzette.alt}
               className="aspect-[4/5] w-full"
               position="52% 42%"
               sizes="(max-width: 1024px) 88vw, 440px"
@@ -176,7 +188,7 @@ export default function GardeAnimaux() {
 
       <BandeauRdv
         titre="Vous partez bientôt ?"
-        texte="Parlez-moi de vos besoins et de votre animal. Le premier échange téléphonique est offert, et sans engagement."
+        texte="Parlez-moi de vos besoins et de votre animal. Vous pouvez m'appeler. Un simple échange téléphonique ne vous engage à rien !"
       />
 
       <script

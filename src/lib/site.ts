@@ -16,7 +16,6 @@ export const site = {
     phone: "06 72 62 35 75",
     phoneHref: "+33672623575",
     email: "contact@lesgambadeurs.fr",
-    calendly: "https://calendly.com/lesgambadeurs",
   },
   zone: {
     ville: "Vignoc",
@@ -26,7 +25,10 @@ export const site = {
     // Coordonnées de Vignoc (35630) — utilisées pour le balisage local SEO.
     lat: 48.2436,
     lng: -1.8103,
+    /** Conseil à l'adoption : tout le département, indemnité au-delà de ce rayon */
     rayonKm: 30,
+    /** Garde d'animaux : périphérie nord de Rennes, indemnité au-delà de ce rayon */
+    rayonGardeKm: 15,
     indemniteKm: "0,665 €/km",
   },
   // ⚠️ À COMPLÉTER : réseaux sociaux (laisser vide masque l'entrée dans le pied de page).

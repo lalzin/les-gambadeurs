@@ -66,7 +66,7 @@ export default function Footer() {
                 {site.zone.ville} ({site.zone.departementCode}), {site.zone.departement}
               </li>
               <li className="text-creme/45">
-                Interventions dans un rayon de {site.zone.rayonKm} km
+                Garde dans un rayon de {site.zone.rayonGardeKm} km
               </li>
               {site.social.instagram && (
                 <li>
@@ -93,14 +93,12 @@ export default function Footer() {
                 </li>
               )}
             </ul>
-            <a
-              href={site.contact.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="mt-7 inline-block rounded-full border border-creme/30 px-5 py-2.5 text-[13px] transition-colors hover:border-creme hover:bg-creme hover:text-brun"
             >
-              Prendre rendez-vous
-            </a>
+              Me contacter
+            </Link>
           </div>
         </div>
 

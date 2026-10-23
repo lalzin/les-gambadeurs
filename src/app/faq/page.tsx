@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Epi } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
-import { BandeauRdv, Bouton, EntetePage, Faq, schemaFaq } from "@/components/Ui";
+import { Bouton, EntetePage, Faq, schemaFaq } from "@/components/Ui";
 import { faqAdoption, faqGarde, photos } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -28,9 +28,9 @@ export default function FaqPage() {
         surtitre="Bon à savoir"
         titre="Questions fréquentes"
         href="/faq"
-        intro="Tout ce qu'on me demande le plus souvent, rangé en deux temps : la garde de votre animal pendant votre absence, et l'accompagnement avant une adoption. Si votre question n'y est pas, le téléphone reste le plus simple."
-        photo={photos.bountyPortrait.src}
-        photoAlt={photos.bountyPortrait.alt}
+        intro="Tout ce qu'on me demande le plus souvent, rangé en deux temps : la garde de votre animal pendant votre absence, et l'accompagnement avant, pendant et/ou après une adoption. Si votre question n'y est pas, le téléphone reste le plus simple."
+        photo={photos.zen.src}
+        photoAlt={photos.zen.alt}
         photoPosition="52% 40%"
       />
 
@@ -54,7 +54,14 @@ export default function FaqPage() {
         <Faq
           items={faqAdoption}
           surtitre="Conseil à l'adoption"
-          titre="Se préparer avant d'adopter."
+          titre={
+            <>
+              Se préparer avant d&apos;adopter.
+              <span className="mt-3 block text-[0.62em] text-brun/70">
+                Se faire accompagner pendant et juste après l&apos;adoption.
+              </span>
+            </>
+          }
           className="relative"
           avecSchema={false}
         />
@@ -71,7 +78,7 @@ export default function FaqPage() {
           </h2>
           <p className="prose-gambadeurs mt-5 text-[16.5px]">
             Chaque animal a ses particularités, et aucune FAQ ne remplace deux minutes de
-            conversation. Le premier échange téléphonique est offert.
+            conversation.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <a
@@ -92,7 +99,6 @@ export default function FaqPage() {
         </Reveal>
       </section>
 
-      <BandeauRdv />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </>

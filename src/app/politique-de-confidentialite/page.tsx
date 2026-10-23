@@ -49,14 +49,6 @@ export default function Confidentialite() {
           Base légale : votre consentement, recueilli par la case à cocher du formulaire.
         </p>
         <p>
-          <strong>Prise de rendez-vous.</strong> Le calendrier est fourni par Calendly LLC. Lorsque
-          vous réservez un créneau, vous transmettez à Calendly les informations saisies dans le
-          formulaire (nom, adresse e-mail, numéro de téléphone, précisions éventuelles). Ces données
-          me sont ensuite communiquées pour organiser le rendez-vous. Calendly dépose ses propres
-          cookies dans le cadre de son service et affiche sa propre bannière de consentement.
-          Base légale : exécution de mesures précontractuelles à votre demande.
-        </p>
-        <p>
           <strong>Téléphone et e-mail.</strong> Les informations que vous me communiquez directement
           (coordonnées, dates de garde, informations sur votre animal) servent uniquement à répondre
           à votre demande et à réaliser la prestation. Base légale : exécution du contrat ou intérêt
@@ -84,8 +76,8 @@ export default function Confidentialite() {
         <p>
           Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins
           commerciales. Les seuls destinataires sont moi-même, Resend (acheminement des messages du
-          formulaire) et, pour la seule prise de rendez-vous, Calendly LLC. Ces deux prestataires
-          sont établis aux États-Unis et adhèrent au cadre de protection des données UE–États-Unis.
+          formulaire), prestataire établi aux États-Unis qui adhère au cadre de protection des
+          données UE–États-Unis.
         </p>
         <p>
           En cas d&apos;urgence vétérinaire pendant une garde, les informations strictement
@@ -129,8 +121,8 @@ export default function Confidentialite() {
       <BlocTexte titre="Cookies">
         <p>
           Ce site ne dépose aucun cookie de mesure d&apos;audience ni de publicité, aucune bannière
-          de consentement n&apos;est donc nécessaire pour le consulter. Seule la page Contact charge
-          le calendrier Calendly, qui gère son propre consentement au moment où il s&apos;affiche.
+          de consentement n&apos;est donc nécessaire pour le consulter. Aucun service tiers n&apos;est
+          chargé lors de la navigation.
         </p>
       </BlocTexte>
 

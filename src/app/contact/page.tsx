@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 import Annotation from "@/components/Annotation";
-import { Champ, Epi, Patte } from "@/components/Botanique";
-import Calendly from "@/components/Calendly";
+import { Champ, Patte } from "@/components/Botanique";
 import FormulaireContact from "@/components/FormulaireContact";
 import Reveal from "@/components/Reveal";
-import { Bouton, EntetePage, TitreSection } from "@/components/Ui";
-import { communes, photos } from "@/lib/content";
+import { EntetePage, TitreSection } from "@/components/Ui";
+import { communesGarde, photos } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact & prise de rendez-vous",
+  title: "Contact",
   description:
-    "Premier échange téléphonique offert : réservez votre créneau en ligne. Garde d'animaux et conseil à l'adoption autour de Rennes (35).",
+    "Un échange téléphonique ne vous engage à rien : appelez, écrivez ou envoyez un message. Garde d'animaux et conseil à l'adoption autour de Rennes (35).",
   alternates: { canonical: "/contact" },
   openGraph: openGraph({
-    title: "Contact & prise de rendez-vous — Les Gambadeurs",
-    description: "Premier échange téléphonique offert. Réservez votre créneau en ligne.",
+    title: "Contact — Les Gambadeurs",
+    description: "Par téléphone, par e-mail ou par message : un échange ne vous engage à rien.",
     url: "/contact",
   }),
 };
@@ -33,14 +32,23 @@ export default function Contact() {
   return (
     <>
       <EntetePage
-        surtitre="Contact & rendez-vous"
+        surtitre="Contact"
         titre="On en parle ?"
         fil="Contact"
         href="/contact"
-        intro="Le premier échange téléphonique est offert et sans engagement. Racontez-moi votre animal, vos dates, ou simplement ce qui vous fait hésiter. On avisera ensemble."
-        photo={photos.suzetteBalcon.src}
-        photoAlt={photos.suzetteBalcon.alt}
-        photoPosition="50% 55%"
+        intro={
+          <>
+            <p>Un échange téléphonique ne vous engage à rien.</p>
+            <p>
+              Parlez-moi de votre animal, de vos besoins de garde, de votre projet d&apos;adoption, ou
+              tout simplement de ce qui vous fait hésiter (à adopter… ou à me solliciter). On avisera
+              ensemble.
+            </p>
+          </>
+        }
+        photo={photos.fondatriceTerrasse.src}
+        photoAlt={photos.fondatriceTerrasse.alt}
+        photoPosition="55% 50%"
       />
 
       {/* ============================================================ */}
@@ -62,11 +70,11 @@ export default function Contact() {
               note: "Réponse sous 24 à 48 h. Précisez vos dates et l'espèce concernée, ça fait gagner un aller-retour.",
             },
             {
-              label: "En ligne",
-              valeur: "Réserver un créneau",
-              href: site.contact.calendly,
-              externe: true,
-              note: "Choisissez directement l'horaire qui vous arrange dans mon agenda.",
+              // ⚠️ À VALIDER — le texte de cette carte était tronqué dans le document de correctifs.
+              label: "Par message",
+              valeur: site.contact.phone,
+              href: `sms:${site.contact.phoneHref}`,
+              note: "Un SMS avec vos dates et votre animal, et je vous recontacte dès que possible.",
             },
           ].map((c, i) => (
             <Reveal
@@ -80,7 +88,6 @@ export default function Contact() {
               </div>
               <a
                 href={c.href}
-                {...(c.externe ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="titre mt-5 block text-[23px] break-words transition-colors hover:text-terre"
               >
                 {c.valeur}
@@ -94,7 +101,7 @@ export default function Contact() {
       {/* ============================================================ */}
       {/* FORMULAIRE                                                   */}
       {/* ============================================================ */}
-      <section className="mx-auto max-w-[1240px] px-5 pt-24 sm:px-8 sm:pt-28">
+      <section className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:pt-4">
             <TitreSection
@@ -124,53 +131,6 @@ export default function Contact() {
       </section>
 
       {/* ============================================================ */}
-      {/* CALENDLY                                                     */}
-      {/* ============================================================ */}
-      <section className="relative mt-28 overflow-hidden bg-creme py-24 sm:py-28">
-        <Epi className="absolute -bottom-6 left-[3%] h-40 w-14 text-sable/45" seed={3} />
-        <Epi className="absolute right-[4%] -bottom-4 h-32 w-12 text-olive/45" seed={11} />
-
-        <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <TitreSection surtitre="Prise de rendez-vous" titre="Choisissez votre créneau." />
-              <div className="prose-gambadeurs mt-7 max-w-md text-[16px]">
-                <p>
-                  Le rendez-vous se fait par téléphone. Prévoyez une quinzaine de minutes au calme :
-                  j&apos;aurai quelques questions sur votre animal, son quotidien et vos attentes.
-                </p>
-              </div>
-
-              <ul className="mt-8 space-y-3">
-                {[
-                  "Espèce, âge et particularités de votre animal",
-                  "Vos dates ou votre projet d'adoption",
-                  "Votre commune",
-                ].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-[15px] text-encre/75">
-                    <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-olive" />
-                    {i}
-                  </li>
-                ))}
-              </ul>
-
-              <Annotation direction="bas-droite" className="mt-9 max-w-[240px]" rotation={-3}>
-                {"Ce premier échange\nest offert"}
-              </Annotation>
-
-              <div className="mt-6">
-                <Bouton href={site.contact.calendly} externe variante="ligne">
-                  Ouvrir dans un nouvel onglet
-                </Bouton>
-              </div>
-            </div>
-
-            <Calendly />
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
       {/* ZONE                                                         */}
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-mousse py-24 text-creme">
@@ -182,18 +142,25 @@ export default function Contact() {
             <div>
               <p className="surtitre text-tendre">Où j&apos;interviens</p>
               <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
-                {site.zone.ville}, le pays de Bécherel, le nord de Rennes.
+                Au départ de {site.zone.ville}, au nord de Rennes.
               </h2>
               <p className="mt-6 max-w-md text-[16px] leading-relaxed text-creme/75">
-                Base : {site.zone.ville} ({site.zone.departementCode}) — {site.zone.departement}.
+                <strong className="font-medium text-creme">Garde d&apos;animaux</strong> : dans un
+                rayon d&apos;environ {site.zone.rayonGardeKm} km autour de {site.zone.ville}.
                 <br />
-                Au-delà de {site.zone.rayonKm} km, une indemnité kilométrique de {site.zone.indemniteKm}{" "}
+                <strong className="font-medium text-creme">Conseil à l&apos;adoption</strong> : sur
+                tout le département {site.zone.departementCode}.
+                <br />
+                Au-delà de ces rayons, une indemnité kilométrique de {site.zone.indemniteKm}{" "}
                 supplémentaire est appliquée.
               </p>
             </div>
             <Reveal delai={100}>
+              <p className="mb-4 text-[11px] tracking-[0.24em] text-tendre uppercase">
+                Communes desservies pour la garde
+              </p>
               <ul className="flex flex-wrap gap-2.5">
-                {communes.map((c) => (
+                {communesGarde.map((c) => (
                   <li
                     key={c}
                     className="rounded-full border border-creme/20 px-4 py-2 text-[13px] text-creme/80"
@@ -201,6 +168,9 @@ export default function Contact() {
                     {c}
                   </li>
                 ))}
+                <li className="rounded-full bg-creme/10 px-4 py-2 text-[13px] text-creme/70">
+                  et les communes alentour
+                </li>
               </ul>
             </Reveal>
           </div>

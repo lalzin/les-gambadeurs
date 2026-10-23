@@ -141,8 +141,8 @@ export default function ConseilAdoption() {
         <div className="grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <PhotoArche
-              src={photos.suzettePortrait.src}
-              alt={photos.suzettePortrait.alt}
+              src={photos.fondatriceCalin.src}
+              alt={photos.fondatriceCalin.alt}
               className="aspect-[4/5] w-full max-w-[420px]"
               position="50% 35%"
               sizes="(max-width: 1024px) 88vw, 420px"
@@ -204,8 +204,8 @@ export default function ConseilAdoption() {
                 {site.zone.indemniteKm} supplémentaire est appliquée.
               </p>
               <div className="mt-9">
-                <Bouton href={site.contact.calendly} externe variante="clair">
-                  Réserver le premier échange
+                <Bouton href="/contact" variante="clair">
+                  Me contacter
                 </Bouton>
               </div>
             </div>

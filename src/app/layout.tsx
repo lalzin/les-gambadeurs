@@ -113,7 +113,7 @@ const donneesStructurees = {
     {
       "@type": "GeoCircle",
       geoMidpoint: { "@type": "GeoCoordinates", latitude: site.zone.lat, longitude: site.zone.lng },
-      geoRadius: site.zone.rayonKm * 1000,
+      geoRadius: site.zone.rayonGardeKm * 1000,
     },
   ],
   knowsAbout: [
@@ -132,11 +132,6 @@ const donneesStructurees = {
     { "@type": "Offer", itemOffered: { "@type": "Service", name: "Visites et promenades" } },
     { "@type": "Offer", itemOffered: { "@type": "Service", name: "Conseil à l'adoption" } },
   ],
-  potentialAction: {
-    "@type": "ReserveAction",
-    target: { "@type": "EntryPoint", urlTemplate: site.contact.calendly },
-    name: "Prendre rendez-vous",
-  },
 };
 
 /** Balisage du site lui-même — aide les moteurs à relier les pages entre elles. */
@@ -152,7 +147,13 @@ const donneesSite = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${fraunces.variable} ${outfit.variable} ${caveat.variable}`}>
+    <html
+      lang="fr"
+      className={`${fraunces.variable} ${outfit.variable} ${caveat.variable}`}
+      // Le script d'amélioration progressive ajoute la classe « anim » avant
+      // l'hydratation : écart attendu, sans conséquence.
+      suppressHydrationWarning
+    >
       <head>
         {/*
           Amélioration progressive. Les apparitions au défilement masquent le

@@ -4,8 +4,7 @@ import type { NextConfig } from "next";
  * En-têtes de sécurité appliqués à toutes les pages.
  *
  * La politique de sécurité du contenu (CSP) autorise exactement ce dont le site
- * a besoin : ses propres ressources, les images optimisées par Next, et Calendly
- * pour la prise de rendez-vous. Toute autre origine est refusée par le
+ * a besoin : ses propres ressources et les images optimisées par Next. Toute autre origine est refusée par le
  * navigateur, ce qui limite fortement l'impact d'une injection de script.
  *
  * ⚠️ Si vous ajoutez un outil tiers (mesure d'audience, chat, pixel publicitaire),
@@ -15,12 +14,12 @@ import type { NextConfig } from "next";
 const csp = [
   "default-src 'self'",
   // 'unsafe-inline' reste nécessaire aux styles et au bootstrap de Next.js
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com",
-  "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
-  "img-src 'self' data: blob: https://*.calendly.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self' https://calendly.com https://*.calendly.com",
-  "frame-src https://calendly.com https://*.calendly.com",
+  "connect-src 'self'",
+  "frame-src 'none'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

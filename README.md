@@ -27,7 +27,7 @@ Tout le texte du site est centralisé dans deux fichiers — aucun besoin de tou
 
 | Fichier | Contenu |
 | --- | --- |
-| `src/lib/site.ts` | Coordonnées, URL du domaine, lien Calendly, zone d'intervention, réseaux sociaux, vidéo de bannière, menus |
+| `src/lib/site.ts` | Coordonnées, URL du domaine, zones d'intervention (15 km garde, 30 km adoption), réseaux sociaux, vidéo de bannière, menus |
 | `src/lib/content.ts` | Textes de toutes les pages : manifeste, prestations, tarifs, FAQ, communes, présentation, légendes des photos |
 | `src/lib/legal.ts` | Identité de l'entreprise : SIRET, forme juridique, assurance, ACACED, médiateur. Alimente les trois pages légales |
 
@@ -71,7 +71,7 @@ Les blocs à valider par la cliente sont signalés par un commentaire **`⚠️ 
 
 ## Activer le formulaire de contact
 
-La page Contact propose un formulaire en plus du téléphone et de Calendly. Les
+La page Contact propose un formulaire en plus du téléphone, de l'e-mail et du SMS. Les
 messages sont acheminés par [Resend](https://resend.com), dont le quota gratuit
 (3 000 messages par mois) est très largement suffisant.
 
@@ -167,7 +167,7 @@ Déjà en place :
   sera renseigné ;
 - fil d'Ariane, hiérarchie de titres, textes alternatifs sur toutes les images ;
 - images optimisées et pré-dimensionnées par `next/image`, polices auto-hébergées,
-  Calendly chargé en différé avec `preconnect` ;
+  aucun service tiers chargé côté visiteur ;
 - **contenu lisible sans JavaScript** : les apparitions au défilement ne masquent
   le contenu que si le navigateur sait effectivement le révéler (classe `anim`
   posée par un script en tête de page). Sans JS, script bloqué ou navigateur
@@ -175,7 +175,7 @@ Déjà en place :
   d'indexation qui n'exécuterait pas les scripts.
 
 **En-têtes de sécurité** (dans `next.config.ts`) : politique de sécurité du
-contenu limitée au site et à Calendly, `X-Frame-Options`, `X-Content-Type-Options`,
+contenu limitée au site lui-même, `X-Frame-Options`, `X-Content-Type-Options`,
 `Referrer-Policy`, `Permissions-Policy` et HSTS. La signature `X-Powered-By` est
 retirée. ⚠️ Ajouter un outil tiers (mesure d'audience, chat) impose d'ajouter son
 domaine à la CSP, sinon le navigateur le bloque silencieusement.
@@ -210,7 +210,7 @@ src/
     conseil-a-l-adoption/       Prestations & tarifs d'accompagnement
     qui-suis-je/                Présentation, compétences, plateforme de marque
     faq/                        Les deux FAQ réunies (garde + adoption)
-    contact/                    Coordonnées + calendrier Calendly
+    contact/                    Coordonnées, formulaire, zone d'intervention
     mentions-legales/           Éditeur, ACACED, DDPP, médiation
     politique-de-confidentialite/
     conditions-generales/
@@ -223,7 +223,6 @@ src/
     Header.tsx / Footer.tsx
     Ui.tsx                      Titres, boutons, cartes, photos en arche, bandeaux
     Reveal.tsx                  Apparition au défilement
-    Calendly.tsx                Calendrier embarqué, chargé paresseusement
   lib/
     site.ts                     Configuration
     content.ts                  Contenus éditoriaux
