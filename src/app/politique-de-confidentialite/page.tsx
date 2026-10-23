@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Quelles données sont collectées sur ce site, pourquoi, combien de temps elles sont conservées et comment exercer vos droits RGPD auprès des Gambadeurs.",
   alternates: { canonical: "/politique-de-confidentialite" },
   openGraph: openGraph({
-    title: "Politique de confidentialité — Les Gambadeurs",
+    title: "Politique de confidentialité | Les Gambadeurs",
     description: "Données collectées, durées de conservation et exercice de vos droits RGPD.",
     url: "/politique-de-confidentialite",
   }),
@@ -77,7 +77,7 @@ export default function Confidentialite() {
           Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins
           commerciales. Les seuls destinataires sont moi-même, Resend (acheminement des messages du
           formulaire), prestataire établi aux États-Unis qui adhère au cadre de protection des
-          données UE–États-Unis.
+          données UE-États-Unis.
         </p>
         <p>
           En cas d&apos;urgence vétérinaire pendant une garde, les informations strictement

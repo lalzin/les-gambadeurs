@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${site.name} — ${site.baseline}`,
+    name: `${site.name} | ${site.baseline}`,
     short_name: site.name,
     description:
       "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",

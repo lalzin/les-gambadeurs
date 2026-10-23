@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Éditeur, hébergeur, immatriculation, assurance et médiation de la consommation : les mentions légales du site Les Gambadeurs.",
   alternates: { canonical: "/mentions-legales" },
   openGraph: openGraph({
-    title: "Mentions légales — Les Gambadeurs",
+    title: "Mentions légales | Les Gambadeurs",
     description: "Informations légales sur l'éditeur du site Les Gambadeurs.",
     url: "/mentions-legales",
   }),

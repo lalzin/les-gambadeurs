@@ -27,8 +27,8 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.baseline} en Ille-et-Vilaine`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | ${site.baseline} en Ille-et-Vilaine`,
+    template: `%s | ${site.name}`,
   },
   description:
     "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine : chiens, chats et NAC. Une approche fondée sur les besoins biologiques de votre animal, à Vignoc et autour de Rennes.",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.baseline}`,
+    title: `${site.name} | ${site.baseline}`,
     description:
       "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",
     images: [
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Les Gambadeurs — garde d'animaux et conseil à l'adoption en Ille-et-Vilaine",
+        alt: "Les Gambadeurs, garde d'animaux et conseil à l'adoption en Ille-et-Vilaine",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.baseline}`,
+    title: `${site.name} | ${site.baseline}`,
     description:
       "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",
     images: ["/og.png"],
@@ -90,7 +90,7 @@ const donneesStructurees = {
   "@type": "ProfessionalService",
   "@id": `${site.url}/#entreprise`,
   name: site.name,
-  alternateName: `${site.name} — ${site.baseline}`,
+  alternateName: `${site.name} | ${site.baseline}`,
   description:
     "Garde d'animaux à domicile (chiens, chats, NAC) et conseil à l'adoption en Ille-et-Vilaine.",
   url: site.url,
@@ -125,7 +125,7 @@ const donneesStructurees = {
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
     credentialCategory: "certificate",
-    name: "ACACED — Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques",
+    name: "ACACED : Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques",
   },
   makesOffer: [
     { "@type": "Offer", itemOffered: { "@type": "Service", name: "Garde d'animaux à domicile" } },

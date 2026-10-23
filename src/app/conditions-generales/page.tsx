@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Réservation, tarifs, frais kilométriques, annulation, clés, urgences vétérinaires et responsabilité : les conditions générales des prestations Les Gambadeurs.",
   alternates: { canonical: "/conditions-generales" },
   openGraph: openGraph({
-    title: "Conditions générales de prestation — Les Gambadeurs",
+    title: "Conditions générales de prestation | Les Gambadeurs",
     description: "Réservation, annulation, responsabilité et assurance des prestations.",
     url: "/conditions-generales",
   }),

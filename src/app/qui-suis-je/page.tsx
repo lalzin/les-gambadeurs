@@ -7,12 +7,12 @@ import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Qui suis-je — ACACED & besoins de l'animal",
+  title: "Qui suis-je | ACACED & besoins de l'animal",
   description:
     "Titulaire de l'ACACED et formée aux besoins biologiques des animaux de compagnie : le parcours et les convictions derrière Les Gambadeurs (35).",
   alternates: { canonical: "/qui-suis-je" },
   openGraph: openGraph({
-    title: "Qui suis-je — Les Gambadeurs",
+    title: "Qui suis-je | Les Gambadeurs",
     description: "Le parcours, l'ACACED et les convictions derrière Les Gambadeurs.",
     url: "/qui-suis-je",
   }),

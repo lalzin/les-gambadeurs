@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "Visites, promenades et séjours pour chiens, chats et NAC à votre domicile, autour de Vignoc et de Rennes. Nouvelles et photos à chaque passage.",
   alternates: { canonical: "/garde-d-animaux" },
   openGraph: openGraph({
-    title: "Garde d'animaux à domicile en Ille-et-Vilaine — Les Gambadeurs",
+    title: "Garde d'animaux à domicile en Ille-et-Vilaine | Les Gambadeurs",
     description:
       "Visites, promenades et séjours pour chiens, chats et NAC, dans leurs repères. Ille-et-Vilaine.",
     url: "/garde-d-animaux",

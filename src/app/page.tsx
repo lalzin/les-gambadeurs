@@ -10,12 +10,12 @@ import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${site.name} — Garde d'animaux en Ille-et-Vilaine`,
+  title: `${site.name} | Garde d'animaux en Ille-et-Vilaine`,
   description:
     "Garde de chiens, chats et NAC à domicile et conseil à l'adoption, à Vignoc et autour de Rennes (35). Premier échange téléphonique offert.",
   alternates: { canonical: "/" },
   openGraph: openGraph({
-    title: `${site.name} — Garde d'animaux & conseil à l'adoption`,
+    title: `${site.name} | Garde d'animaux & conseil à l'adoption`,
     description:
       "Garde de chiens, chats et NAC à domicile et conseil à l'adoption en Ille-et-Vilaine. Premier échange offert.",
     url: "/",

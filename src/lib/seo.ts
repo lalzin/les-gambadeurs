@@ -12,7 +12,7 @@ export const imagePartage = [
     url: "/og.png",
     width: 1200,
     height: 630,
-    alt: `${site.name} — ${site.baseline} en ${site.zone.departement}`,
+    alt: `${site.name}, ${site.baseline} en ${site.zone.departement}`,
   },
 ];
 

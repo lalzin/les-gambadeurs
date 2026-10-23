@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Un échange téléphonique ne vous engage à rien : appelez, écrivez ou envoyez un message. Garde d'animaux et conseil à l'adoption autour de Rennes (35).",
   alternates: { canonical: "/contact" },
   openGraph: openGraph({
-    title: "Contact — Les Gambadeurs",
+    title: "Contact | Les Gambadeurs",
     description: "Par téléphone, par e-mail ou par message : un échange ne vous engage à rien.",
     url: "/contact",
   }),
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact — Les Gambadeurs",
+  name: "Contact | Les Gambadeurs",
   url: `${site.url}/contact`,
   mainEntity: { "@id": `${site.url}/#entreprise` },
 };

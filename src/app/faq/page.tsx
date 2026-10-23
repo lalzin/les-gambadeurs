@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Animaux gardés, communes desservies, traitements, tarifs, délais de réservation : les réponses aux questions les plus posées sur la garde et l'adoption.",
   alternates: { canonical: "/faq" },
   openGraph: openGraph({
-    title: "Questions fréquentes — Les Gambadeurs",
+    title: "Questions fréquentes | Les Gambadeurs",
     description:
       "Les réponses aux questions les plus posées sur la garde d'animaux et le conseil à l'adoption en Ille-et-Vilaine.",
     url: "/faq",

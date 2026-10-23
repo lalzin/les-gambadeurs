@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Avant d'adopter un chien, un chat ou un NAC : entretien à domicile, livret sur mesure et guide d'accueil. Ille-et-Vilaine, dès 48 €.",
   alternates: { canonical: "/conseil-a-l-adoption" },
   openGraph: openGraph({
-    title: "Conseil à l'adoption — Les Gambadeurs",
+    title: "Conseil à l'adoption | Les Gambadeurs",
     description:
       "Choisir un animal qui correspond vraiment à votre vie. Entretien à domicile, livret sur mesure, guide d'accueil.",
     url: "/conseil-a-l-adoption",

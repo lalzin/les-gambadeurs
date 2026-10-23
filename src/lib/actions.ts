@@ -141,7 +141,7 @@ export async function envoyerDemande(
       from: expediteur,
       to: [destinataire],
       replyTo: email,
-      subject: `[Site] ${LIBELLES[sujet] ?? LIBELLES.autre} — ${nom}`,
+      subject: `[Site] ${LIBELLES[sujet] ?? LIBELLES.autre} : ${nom}`,
       html,
       text: brut,
     });

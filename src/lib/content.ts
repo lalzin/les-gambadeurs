@@ -45,7 +45,7 @@ export const manifesteChute =
 /** Plateforme de marque — utilisée sur « Qui suis-je ». */
 export const plateforme = {
   vision:
-    "Les besoins biologiques des animaux restent encore souvent méconnus, engendrant des situations dysfonctionnelles — désagréables pour l'Homme comme pour l'animal — qui pourraient être évitées.",
+    "Les besoins biologiques des animaux restent encore souvent méconnus, engendrant des situations dysfonctionnelles, désagréables pour l'Homme comme pour l'animal, qui pourraient être évitées.",
   mission:
     "Aider les propriétaires à mieux comprendre leurs animaux pour prendre les décisions les plus adaptées à leurs besoins tout au long de leur vie.",
   posture: "Le guide : celui qui en sait plus, mais qui marche à côté de vous, pas devant vous.",
@@ -382,7 +382,7 @@ export const communes = [
  * Remplacez `prenom` et relisez chaque paragraphe avant mise en ligne.
  */
 export const fondatrice = {
-  prenom: "", // ⚠️ ex. "Daphné" — laissé vide, le site s'adapte
+  prenom: "", // ⚠️ ex. "Daphné" | laissé vide, le site s'adapte
   role: "Fondatrice des Gambadeurs",
   paragraphes: [
     "J'ai grandi entourée d'animaux, et longtemps j'ai cru que les aimer suffisait. C'est en observant, en me formant, puis en accompagnant d'autres foyers que j'ai compris à quel point nos évidences d'humains passent souvent à côté de ce dont ils ont réellement besoin.",
