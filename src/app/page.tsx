@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Annotation from "@/components/Annotation";
 import { Champ, Collines, Epi, Tournesol } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
 import { Bouton, PhotoArche, TitreSection } from "@/components/Ui";
@@ -92,11 +91,6 @@ export default function Accueil() {
               </div>
             </Reveal>
 
-            <Reveal delai={360}>
-              <Annotation direction="haut-droite" className="mt-10 max-w-xs" rotation={-2}>
-                {"Le premier échange\ntéléphonique est offert"}
-              </Annotation>
-            </Reveal>
           </div>
 
           {/* photo principale */}
@@ -207,6 +201,8 @@ export default function Accueil() {
               titre: "Conseil à l'adoption",
               texte:
                 "Avant de choisir, on regarde votre vie en face : logement, rythme, budget, environnement. Pour que l'animal qui arrive dans votre vie soit le bon, et qu'il reste.",
+              texteSuite:
+                "Si vous avez déjà adopté, il n'est jamais trop tard pour vous faire accompagner ! Je vous transmets mes astuces, rappels d'éducation, conseils nutrition, et plus encore.",
               photo: photos.jeuPelouse,
               position: "50% 60%",
             },
@@ -233,6 +229,9 @@ export default function Accueil() {
                 <div className="p-7 sm:p-9">
                   <h3 className="titre text-[28px]">{c.titre}</h3>
                   <p className="prose-gambadeurs mt-4 text-[15.5px]">{c.texte}</p>
+                  {"texteSuite" in c && (
+                    <p className="prose-gambadeurs mt-3 text-[15.5px]">{c.texteSuite}</p>
+                  )}
                   <span className="mt-6 inline-flex items-center gap-2 text-[13.5px] font-medium text-terre">
                     Voir les prestations &amp; tarifs
                     <span className="transition-transform duration-400 group-hover:translate-x-1.5">→</span>
@@ -248,7 +247,7 @@ export default function Accueil() {
       {/* PILIERS                                                      */}
       {/* ============================================================ */}
       <section className="mx-auto max-w-[1240px] px-5 py-28 sm:px-8 sm:py-32">
-        <TitreSection surtitre="Notre façon de faire" titre="Trois convictions, appliquées tous les jours." />
+        <TitreSection surtitre="Ma façon de faire" titre="Trois convictions, appliquées tous les jours." />
         <div className="mt-16 grid gap-10 md:grid-cols-3">
           {piliers.map((p, i) => (
             <Reveal key={p.titre} delai={i * 110} className="relative">

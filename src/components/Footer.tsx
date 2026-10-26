@@ -65,9 +65,6 @@ export default function Footer() {
               <li className="text-creme/60">
                 {site.zone.ville} ({site.zone.departementCode}), {site.zone.departement}
               </li>
-              <li className="text-creme/45">
-                Garde dans un rayon de {site.zone.rayonGardeKm} km
-              </li>
               {site.social.instagram && (
                 <li>
                   <a

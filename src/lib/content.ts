@@ -10,7 +10,7 @@
 /* ACCUEIL                                                             */
 /* ------------------------------------------------------------------ */
 
-export const introAccueil = `Les Gambadeurs, c'est une société fondée avec l'ambition d'améliorer le confort de vie de nos animaux, mais aussi de leurs maîtres. Au-delà des prestations de garde proposées en votre absence, pendant lesquelles nous nous assurons que vos compagnons ne manquent de rien, nous avons à cœur de vous accompagner en vous délivrant les astuces bien-être qui peuvent améliorer le quotidien de votre petit.e protégé.e.
+export const introAccueil = `Les Gambadeurs, c'est une société fondée avec l'ambition d'améliorer le confort de vie de nos animaux, mais aussi de leurs maîtres. Au-delà des prestations de garde proposées en votre absence, pendant lesquelles je m'assure que vos compagnons ne manquent de rien, j'ai à cœur de vous accompagner en vous délivrant les astuces bien-être qui peuvent améliorer le quotidien de votre petit.e protégé.e.
 De leur adoption jusqu'à leur vieillissement, de la nutrition au comportementalisme, pour leur offrir l'épanouissement qu'ils méritent et vous offrir une relation harmonieuse, il ne s'agit pas juste de les aimer, mais de les comprendre profondément.`;
 
 /** Le manifeste de marque, découpé en strophes pour la mise en page. */
@@ -64,12 +64,12 @@ export const piliers = [
   {
     titre: "Des besoins biologiques d'abord",
     texte:
-      "Alimentation, sommeil, exploration, contacts sociaux : on part de ce dont l'espèce a biologiquement besoin avant de parler de dressage ou d'accessoires.",
+      "Alimentation, sommeil, exploration, contacts sociaux : on part de ce dont l'espèce a biologiquement besoin avant de parler de dressage ou d'accessoires.",
   },
   {
     titre: "Un accompagnement qui dure",
     texte:
-      "De l'adoption au grand âge, on vous transmet les repères pour décider sereinement, et être en mesure de solutionner les problématiques individuelles liées à votre animal ou votre situation.",
+      "De l'adoption au grand âge, je vous transmets les repères pour décider sereinement, et être en mesure de résoudre les problématiques individuelles liées à votre animal ou votre situation.",
   },
 ];
 
@@ -225,11 +225,11 @@ export const faqGarde = [
  * barrés ni de mention « -40 % ». Le site étant pré-rendu, la date est évaluée
  * à chaque déploiement — pour prolonger une offre, modifier `finLe` et redéployer.
  */
-const FIN_OFFRE = "2026-08-31T23:59:59+02:00";
+const FIN_OFFRE = "2026-11-30T23:59:59+01:00";
 export const offreLancement = {
   actif: Date.now() <= new Date(FIN_OFFRE).getTime(),
   remise: "-40 %",
-  jusquau: "31 août 2026",
+  jusquau: "30 novembre 2026",
   finLe: FIN_OFFRE,
 };
 
@@ -238,7 +238,7 @@ export const prestationsAdoption: Prestation[] = [
     id: "premier-echange",
     nom: "Premier échange",
     detail:
-      "Par téléphone. On fait connaissance, vous racontez votre projet, je vous dis franchement ce qui est réaliste et ce qui ne l'est pas.",
+      "Par téléphone. On fait connaissance, vous me racontez votre projet, je vous dis franchement ce qui est réaliste et ce qui ne l'est pas.",
     duree: "Téléphone",
     prix: "Offert",
     prixPromo: null,
@@ -290,7 +290,35 @@ export const adoptionPourquoi = [
   {
     titre: "Parce qu'un abandon commence souvent par un malentendu",
     texte:
-      "La plupart des séparations naissent d'un besoin non compris, pas d'un manque d'amour. Anticiper coûte infiniment moins cher qu'un renoncement.",
+      "La plupart des séparations naissent d'un besoin non compris, pas d'un manque d'amour. Anticiper coûte infiniment moins cher que renoncer.",
+  },
+];
+
+/** Second bloc : pendant ou juste après l'adoption (brochure tarifaire, page 2). */
+export const prestationsAdoptionApres: Prestation[] = [
+  {
+    id: "recherche-elevages",
+    nom: "Recherche d'élevages et/ou refuges",
+    detail: "Pendant l'adoption : je prends contact avec les structures et je visite avec vous, pour adopter dans un cadre sérieux.",
+    duree: "Prise de contact et visite",
+    prix: "90 €",
+    prixPromo: "54 €",
+  },
+  {
+    id: "conseil-juridique",
+    nom: "Conseil juridique",
+    detail: "Pendant l'adoption : obligations du vendeur, chiens catégorisés, médiation en cas de litige.",
+    duree: "Démarches et litiges",
+    prix: "60 €",
+    prixPromo: "36 €",
+  },
+  {
+    id: "livret-rappels",
+    nom: "Livret des rappels essentiels",
+    detail: "Juste après l'adoption : aménagement de l'espace, bases d'éducation, carnet d'adresses, nutrition.",
+    duree: "Livret",
+    prix: "40 €",
+    prixPromo: "24 €",
   },
 ];
 

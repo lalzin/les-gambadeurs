@@ -6,6 +6,12 @@ import { faqAdoption, faqGarde, photos } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
+/**
+ * Régénération horaire : les prix de l'offre de lancement s'affichent ou
+ * disparaissent selon la date, sans avoir à redéployer le site.
+ */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Questions fréquentes",
   description:

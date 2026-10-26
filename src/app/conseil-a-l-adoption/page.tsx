@@ -16,9 +16,16 @@ import {
   offreLancement,
   photos,
   prestationsAdoption,
+  prestationsAdoptionApres,
 } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
+
+/**
+ * Régénération horaire : les prix de l'offre de lancement s'affichent ou
+ * disparaissent selon la date, sans avoir à redéployer le site.
+ */
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Conseil à l'adoption d'un animal (35)",
@@ -43,7 +50,7 @@ const serviceSchema = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Prestations de conseil à l'adoption",
-    itemListElement: prestationsAdoption.map((p) => ({
+    itemListElement: [...prestationsAdoption, ...prestationsAdoptionApres].map((p) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: p.nom, description: p.detail },
       ...(p.prixPromo || (p.prix && p.prix !== "Offert")
@@ -60,10 +67,23 @@ export default function ConseilAdoption() {
   return (
     <>
       <EntetePage
-        surtitre="Avant d'adopter"
+        surtitre="Avant, pendant et/ou après l'adoption"
         titre="Conseil à l'adoption"
         href="/conseil-a-l-adoption"
-        intro="Adopter, ce n'est pas choisir une race sur une photo : c'est engager dix à quinze ans de quotidien. On regarde votre vie telle qu'elle est, et on cherche ensemble l'animal qui y trouvera sa place."
+        intro={
+          <>
+            <p>
+              Adopter, ce n&apos;est pas choisir une race sur une photo : c&apos;est engager dix à
+              quinze ans de quotidien. On regarde votre vie telle qu&apos;elle est, et on cherche
+              ensemble l&apos;animal qui y trouvera sa place.
+            </p>
+            <p>
+              Si vous avez déjà adopté, que ça fasse 3 jours ou 3 ans, il n&apos;est pas trop tard
+              pour vous faire accompagner si vous en ressentez le besoin : conseil juridique, rappels
+              des bons gestes, astuces du quotidien, ajustements de l&apos;alimentation…
+            </p>
+          </>
+        }
         photo={photos.udonArbre.src}
         photoAlt={photos.udonArbre.alt}
         photoPosition="62% 45%"
@@ -103,7 +123,14 @@ export default function ConseilAdoption() {
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <TitreSection
               surtitre="Le parcours & les tarifs"
-              titre="Quatre étapes, à la carte."
+              titre={
+                <>
+                  Quatre étapes, à la carte.{" "}
+                  <span className="text-[0.55em] font-normal whitespace-nowrap text-brun/70 italic">
+                    (avant l&apos;adoption)
+                  </span>
+                </>
+              }
               intro="Chaque étape se prend indépendamment. Vous pouvez vous arrêter après l'entretien, ou aller jusqu'au guide d'accueil : c'est vous qui décidez jusqu'où l'accompagnement va."
             />
 
@@ -131,6 +158,25 @@ export default function ConseilAdoption() {
               </Annotation>
             </div>
           </Reveal>
+
+          {/* Second bloc : pendant ou juste après l'adoption */}
+          <div className="mt-20">
+            <TitreSection
+              titre={
+                <>
+                  Vos besoins, mes outils{" "}
+                  <span className="text-[0.55em] font-normal whitespace-nowrap text-brun/70 italic">
+                    (pendant ou après l&apos;adoption)
+                  </span>
+                </>
+              }
+            />
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {prestationsAdoptionApres.map((p, i) => (
+                <CartePrestation key={p.id} p={p} index={i} promo={offreLancement.actif} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -152,7 +198,7 @@ export default function ConseilAdoption() {
           <div>
             <TitreSection
               surtitre="Ce qu'il vous reste après"
-              titre="Un livret, un carnet d'adresses, et des repères pour longtemps."
+              titre="Un livret, un carnet d'adresses, des recommandations, et des repères pour longtemps."
               intro="L'objectif n'est pas que vous ayez besoin de moi. C'est que vous sachiez décider seul.e la prochaine fois, pour ce compagnon-là comme pour les suivants."
             />
             <ul className="mt-10 space-y-5">
@@ -172,6 +218,18 @@ export default function ConseilAdoption() {
                 {
                   t: "Un carnet d'adresses local",
                   d: "Vétérinaire, éducateur, toiletteur, associations sérieuses près de chez vous.",
+                },
+                {
+                  t: "Un accompagnement dans vos démarches",
+                  d: "Permis de détention de chiens catégorisés, attestation de cession, passeport européen, réclamation à l'élevage, etc.",
+                },
+                {
+                  t: "Une liste d'élevages et/ou de refuges",
+                  d: "Pour adopter votre compagnon dans une structure sérieuse.",
+                },
+                {
+                  t: "Des rappels pour la vie",
+                  d: "Tout ce qu'il faut savoir sur son bien-être et sa santé : pour une belle et longue histoire.",
                 },
               ].map((i, k) => (
                 <Reveal key={i.t} delai={k * 80} as="li" className="border-l border-lin pl-5">
