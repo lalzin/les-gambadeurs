@@ -6,7 +6,9 @@ import {
   BandeauRdv,
   Bouton,
   CartePrestation,
+  BadgeOffre,
   EntetePage,
+  ListeCommunes,
   PhotoArche,
   TitreSection,
 } from "@/components/Ui";
@@ -78,9 +80,11 @@ export default function ConseilAdoption() {
               ensemble l&apos;animal qui y trouvera sa place.
             </p>
             <p>
-              Si vous avez déjà adopté, que ça fasse 3 jours ou 3 ans, il n&apos;est pas trop tard
-              pour vous faire accompagner si vous en ressentez le besoin : conseil juridique, rappels
-              des bons gestes, astuces du quotidien, ajustements de l&apos;alimentation…
+              Si vous avez déjà adopté, depuis 3 jours ou bien 3 ans, il n&apos;est pas trop tard pour
+              vous faire accompagner si vous en ressentez le besoin : conseil juridique, rappel des
+              bons gestes, astuces du quotidien, ajustement de l&apos;alimentation, mise en relation
+              avec les professionnels locaux (vétérinaire, toiletteur, ostéopathe, dermatologue ou
+              encore éducateur-comportementaliste) de confiance.
             </p>
           </>
         }
@@ -125,22 +129,18 @@ export default function ConseilAdoption() {
               surtitre="Le parcours & les tarifs"
               titre={
                 <>
-                  Quatre étapes, à la carte.{" "}
+                  Quatre étapes, à la carte{" "}
                   <span className="text-[0.55em] font-normal whitespace-nowrap text-brun/70 italic">
                     (avant l&apos;adoption)
                   </span>
                 </>
               }
-              intro="Chaque étape se prend indépendamment. Vous pouvez vous arrêter après l'entretien, ou aller jusqu'au guide d'accueil : c'est vous qui décidez jusqu'où l'accompagnement va."
+              intro="Vous pouvez vous arrêter après l'entretien, ou aller jusqu'au guide d'accueil : c'est vous qui décidez jusqu'où l'accompagnement va."
             />
 
             {offreLancement.actif && (
               <Reveal delai={120} className="shrink-0">
-                <div className="relative rounded-[24px] bg-sable px-7 py-6 text-brun">
-                  <p className="text-[11px] tracking-[0.22em] uppercase">Offre de lancement</p>
-                  <p className="titre mt-2 text-[42px] leading-none">{offreLancement.remise}</p>
-                  <p className="mt-2 text-[13px] text-brun/75">Jusqu&apos;au {offreLancement.jusquau}</p>
-                </div>
+                <BadgeOffre remise={offreLancement.remise} jusquau={offreLancement.jusquau} />
               </Reveal>
             )}
           </div>
@@ -160,7 +160,7 @@ export default function ConseilAdoption() {
           </Reveal>
 
           {/* Second bloc : pendant ou juste après l'adoption */}
-          <div className="mt-20">
+          <div className="mt-20 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <TitreSection
               titre={
                 <>
@@ -171,6 +171,13 @@ export default function ConseilAdoption() {
                 </>
               }
             />
+            {offreLancement.actif && (
+              <Reveal delai={120} className="shrink-0">
+                <BadgeOffre remise={offreLancement.remise} jusquau={offreLancement.jusquau} />
+              </Reveal>
+            )}
+          </div>
+          <div>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {prestationsAdoptionApres.map((p, i) => (
                 <CartePrestation key={p.id} p={p} index={i} promo={offreLancement.actif} />
@@ -198,46 +205,9 @@ export default function ConseilAdoption() {
           <div>
             <TitreSection
               surtitre="Ce qu'il vous reste après"
-              titre="Un livret, un carnet d'adresses, des recommandations, et des repères pour longtemps."
+              titre="Des outils, des recommandations et des repères pour longtemps."
               intro="L'objectif n'est pas que vous ayez besoin de moi. C'est que vous sachiez décider seul.e la prochaine fois, pour ce compagnon-là comme pour les suivants."
             />
-            <ul className="mt-10 space-y-5">
-              {[
-                {
-                  t: "Un profil d'animal argumenté",
-                  d: "Espèce, race, âge, sexe, origine : ce qui correspond à votre situation, et surtout pourquoi.",
-                },
-                {
-                  t: "Un budget réel",
-                  d: "Alimentation, vétérinaire, matériel, garde, imprévus : les chiffres avant l'engagement, pas après.",
-                },
-                {
-                  t: "Une checklist d'arrivée",
-                  d: "Le matériel utile, celui dont on peut se passer, et l'aménagement des premiers jours.",
-                },
-                {
-                  t: "Un carnet d'adresses local",
-                  d: "Vétérinaire, éducateur, toiletteur, associations sérieuses près de chez vous.",
-                },
-                {
-                  t: "Un accompagnement dans vos démarches",
-                  d: "Permis de détention de chiens catégorisés, attestation de cession, passeport européen, réclamation à l'élevage, etc.",
-                },
-                {
-                  t: "Une liste d'élevages et/ou de refuges",
-                  d: "Pour adopter votre compagnon dans une structure sérieuse.",
-                },
-                {
-                  t: "Des rappels pour la vie",
-                  d: "Tout ce qu'il faut savoir sur son bien-être et sa santé : pour une belle et longue histoire.",
-                },
-              ].map((i, k) => (
-                <Reveal key={i.t} delai={k * 80} as="li" className="border-l border-lin pl-5">
-                  <h3 className="titre text-[19px]">{i.t}</h3>
-                  <p className="prose-gambadeurs mt-1.5 text-[15px]">{i.d}</p>
-                </Reveal>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
@@ -269,19 +239,7 @@ export default function ConseilAdoption() {
             </div>
 
             <Reveal delai={100}>
-              <ul className="flex flex-wrap gap-2.5">
-                {communes.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-full border border-creme/20 px-4 py-2 text-[13px] text-creme/80"
-                  >
-                    {c}
-                  </li>
-                ))}
-                <li className="rounded-full bg-creme/10 px-4 py-2 text-[13px] text-creme/70">
-                  et tout le département 35
-                </li>
-              </ul>
+              <ListeCommunes communes={communes} suite="et tout le département 35" />
             </Reveal>
           </div>
         </div>

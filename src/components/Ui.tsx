@@ -234,9 +234,12 @@ export function EntetePage({
   photoPosition = "center",
   fil,
   href,
+  titreLong = false,
 }: {
   surtitre: string;
   titre: string;
+  /** titre-phrase : taille réduite pour rester lisible */
+  titreLong?: boolean;
   /** facultatif ; un ReactNode permet plusieurs paragraphes */
   intro?: ReactNode;
   photo: string;
@@ -263,7 +266,13 @@ export function EntetePage({
               {surtitre}
               <span className="filet w-12" />
             </p>
-            <h1 className="titre mt-6 text-[clamp(2.6rem,6.4vw,4.6rem)]">{titre}</h1>
+            <h1
+              className={`titre mt-6 ${
+                titreLong ? "text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.08]" : "text-[clamp(2.6rem,6.4vw,4.6rem)]"
+              }`}
+            >
+              {titre}
+            </h1>
             {intro && <div className="prose-gambadeurs mt-7 max-w-xl text-[18px]">{intro}</div>}
           </Reveal>
         </div>
@@ -376,5 +385,57 @@ export function FilAriane({ page, href }: { page: string; href?: string }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       )}
     </nav>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge de l'offre de lancement                                       */
+/* ------------------------------------------------------------------ */
+
+export function BadgeOffre({ remise, jusquau }: { remise: string; jusquau: string }) {
+  return (
+    <div className="relative rounded-[24px] bg-sable px-7 py-6 text-brun">
+      <p className="text-[11px] tracking-[0.22em] uppercase">Offre de lancement</p>
+      <p className="titre mt-2 text-[42px] leading-none">{remise}</p>
+      <p className="mt-2 text-[13px] text-brun/75">Jusqu&apos;au {jusquau}</p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Liste des communes : texte simple, sans effet de bouton             */
+/* ------------------------------------------------------------------ */
+
+export function ListeCommunes({
+  communes,
+  suite,
+  sombre = true,
+}: {
+  communes: readonly string[];
+  /** dernière ligne, ex. « et tout le département 35 » */
+  suite?: string;
+  sombre?: boolean;
+}) {
+  return (
+    <ul
+      className={`columns-2 gap-x-10 text-[15px] leading-relaxed sm:columns-3 ${
+        sombre ? "text-creme/85" : "text-encre/80"
+      }`}
+    >
+      {communes.map((c) => (
+        <li key={c} className="flex break-inside-avoid items-baseline gap-2.5 py-1.5">
+          <span
+            aria-hidden
+            className={`h-1 w-1 shrink-0 translate-y-[-3px] rounded-full ${sombre ? "bg-tendre/70" : "bg-olive"}`}
+          />
+          {c}
+        </li>
+      ))}
+      {suite && (
+        <li className={`break-inside-avoid py-1.5 italic ${sombre ? "text-creme/60" : "text-encre/55"}`}>
+          {suite}
+        </li>
+      )}
+    </ul>
   );
 }

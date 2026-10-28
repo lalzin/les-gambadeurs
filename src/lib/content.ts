@@ -283,9 +283,9 @@ export const adoptionPourquoi = [
       "Un animal choisi sur une photo, c'est dix à quinze ans de quotidien décidés en trente secondes. On prend le temps de vérifier que l'histoire tient debout.",
   },
   {
-    titre: "Parce que chaque espèce a ses règles",
+    titre: "Parce que chaque espèce/individu a des besoins spécifiques",
     texte:
-      "Un lapin n'est pas un rongeur, un chiot de berger n'est pas un chien d'appartement, un chat d'élevage n'a pas les besoins d'un chat de refuge. Ces détails changent tout.",
+      "Un lapin n'est pas un rongeur, un chiot de berger n'est pas un chien d'appartement (sauf si vous le sortez en campagne 2 h par jour), un animal issu de l'élevage n'a pas les mêmes besoins qu'un animal issu d'un sauvetage ou vivant en refuge. Ces détails changent tout.",
   },
   {
     titre: "Parce qu'un abandon commence souvent par un malentendu",
@@ -299,7 +299,7 @@ export const prestationsAdoptionApres: Prestation[] = [
   {
     id: "recherche-elevages",
     nom: "Recherche d'élevages et/ou refuges",
-    detail: "Pendant l'adoption : je prends contact avec les structures et je visite avec vous, pour adopter dans un cadre sérieux.",
+    detail: "Pendant l'adoption : je prends contact avec les structures et je les visite, avec vous ou de votre part, pour adopter dans un cadre sérieux.",
     duree: "Prise de contact et visite",
     prix: "90 €",
     prixPromo: "54 €",
@@ -307,7 +307,7 @@ export const prestationsAdoptionApres: Prestation[] = [
   {
     id: "conseil-juridique",
     nom: "Conseil juridique",
-    detail: "Pendant l'adoption : obligations du vendeur, chiens catégorisés, médiation en cas de litige.",
+    detail: "Pendant et/ou après l'adoption : obligations du vendeur, chiens catégorisés, médiation en cas de litige, animal porteur de vice rédhibitoire. Expliquez-moi votre situation : je vous conseille, vous accompagne, et éventuellement vous redirige.",
     duree: "Démarches et litiges",
     prix: "60 €",
     prixPromo: "36 €",
@@ -315,7 +315,7 @@ export const prestationsAdoptionApres: Prestation[] = [
   {
     id: "livret-rappels",
     nom: "Livret des rappels essentiels",
-    detail: "Juste après l'adoption : aménagement de l'espace, bases d'éducation, carnet d'adresses, nutrition.",
+    detail: "Pendant et/ou après l'adoption : aménagement de l'espace, bases d'éducation, carnet d'adresses, point nutrition, etc. Tout ce qu'il faut pour améliorer son bien-être et sa santé.",
     duree: "Livret",
     prix: "40 €",
     prixPromo: "24 €",
@@ -405,17 +405,20 @@ export const communes = [
 /* ------------------------------------------------------------------ */
 
 /**
- * ⚠️ À COMPLÉTER — Texte de présentation rédigé en brouillon, à réécrire
- * ou ajuster par la fondatrice (prénom, parcours, dates, expériences).
- * Remplacez `prenom` et relisez chaque paragraphe avant mise en ligne.
+ * Présentation validée par la fondatrice (correctifs du 26/10/26).
+ * Dans les paragraphes, *texte* s'affiche en italique.
  */
 export const fondatrice = {
-  prenom: "", // ⚠️ ex. "Daphné" | laissé vide, le site s'adapte
-  role: "Fondatrice des Gambadeurs",
+  prenom: "Daphné",
+  /** Sur-titre de la page : Joya est présentée comme co-fondatrice */
+  role: "Fondatrices des Gambadeurs",
+  /** Intitulé de poste pour le balisage Schema.org (Daphné seule) */
+  poste: "Fondatrice des Gambadeurs",
+  titre: "Moi, c'est Joya. À mes côtés, mon inséparable, mon humaine depuis bientôt 10 ans, Daphné.",
   paragraphes: [
     "J'ai grandi entourée d'animaux, et longtemps j'ai cru que les aimer suffisait. C'est en observant, en me formant, puis en accompagnant d'autres foyers que j'ai compris à quel point nos évidences d'humains passent souvent à côté de ce dont ils ont réellement besoin.",
-    "Les Gambadeurs est née de ce constat : la plupart des difficultés du quotidien, qu'il s'agisse de malpropreté, de destruction, d'agitation ou d'un refus de s'alimenter, ne sont pas des caprices. Ce sont des besoins biologiques qui cherchent une sortie. Les comprendre, c'est régler le problème à la racine plutôt que d'empiler les astuces.",
-    "Aujourd'hui, je garde vos animaux quand vous vous absentez, je les observe et vous indique quelques ajustements personnalisés si besoin, et j'accompagne celles et ceux qui souhaitent adopter, pour que le choix soit juste dès le départ. Sans jugement, sans jargon.",
+    "Le projet *Les Gambadeurs* est né de ce constat : la plupart des difficultés du quotidien, qu'il s'agisse de malpropreté, de destruction, d'agitation ou d'un refus de s'alimenter, ne sont pas des caprices. Ce sont des besoins biologiques qui cherchent une sortie. Les comprendre, c'est régler le problème à la racine plutôt que d'empiler les astuces.",
+    "Aujourd'hui, je garde vos animaux quand vous vous absentez, je les observe et vous donne quelques ajustements personnalisés si besoin, et j'accompagne celles et ceux qui souhaitent adopter ou l'ont déjà fait, pour que les choix soient justes, dès le départ et même après. Sans jugement, sans jargon.",
   ],
   competences: [
     {

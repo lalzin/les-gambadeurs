@@ -3,7 +3,7 @@ import Annotation from "@/components/Annotation";
 import { Champ, Patte } from "@/components/Botanique";
 import FormulaireContact from "@/components/FormulaireContact";
 import Reveal from "@/components/Reveal";
-import { EntetePage, TitreSection } from "@/components/Ui";
+import { EntetePage, ListeCommunes, TitreSection } from "@/components/Ui";
 import { communesGarde, photos } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -159,19 +159,7 @@ export default function Contact() {
               <p className="mb-4 text-[11px] tracking-[0.24em] text-tendre uppercase">
                 Communes desservies pour la garde
               </p>
-              <ul className="flex flex-wrap gap-2.5">
-                {communesGarde.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-full border border-creme/20 px-4 py-2 text-[13px] text-creme/80"
-                  >
-                    {c}
-                  </li>
-                ))}
-                <li className="rounded-full bg-creme/10 px-4 py-2 text-[13px] text-creme/70">
-                  et les communes alentour
-                </li>
-              </ul>
+              <ListeCommunes communes={communesGarde} suite="et les communes alentour" />
             </Reveal>
           </div>
         </div>

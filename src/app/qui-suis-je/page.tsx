@@ -30,7 +30,7 @@ export default function QuiSuisJe() {
         "@context": "https://schema.org",
         "@type": "Person",
         name: prenom,
-        jobTitle: fondatrice.role,
+        jobTitle: fondatrice.poste,
         worksFor: { "@id": `${site.url}/#entreprise` },
         url: `${site.url}/qui-suis-je`,
         knowsAbout: fondatrice.competences.map((c) => c.titre),
@@ -46,7 +46,8 @@ export default function QuiSuisJe() {
     <>
       <EntetePage
         surtitre={fondatrice.role}
-        titre={prenom ? `Bonjour, moi c'est ${prenom}.` : "Derrière ce projet"}
+        titre={fondatrice.titre}
+        titreLong
         fil="Qui suis-je"
         href="/qui-suis-je"
         photo={photos.fondatriceJoya.src}
@@ -64,7 +65,12 @@ export default function QuiSuisJe() {
             <Reveal delai={100}>
               <div className="prose-gambadeurs mt-8 max-w-xl text-[17px]">
                 {fondatrice.paragraphes.map((p, i) => (
-                  <p key={i}>{p}</p>
+                  <p key={i}>
+                    {/* *texte* dans les contenus = italique */}
+                    {p.split(/\*([^*]+)\*/).map((morceau, j) =>
+                      j % 2 ? <em key={j}>{morceau}</em> : morceau,
+                    )}
+                  </p>
                 ))}
               </div>
             </Reveal>
