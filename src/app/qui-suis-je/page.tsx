@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Annotation from "@/components/Annotation";
 import { Champ, Patte } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
 import { BandeauRdv, EntetePage, PhotoArche, TitreSection } from "@/components/Ui";
@@ -96,7 +97,7 @@ export default function QuiSuisJe() {
           <TitreSection
             surtitre="Mes compétences"
             titre="Ce sur quoi je m'appuie."
-            intro="Une certification officielle, et une formation continue sur ce qui compte vraiment au quotidien : ce dont nos animaux ont besoin, en fonction de leur espèce et de leur race."
+            intro="Une certification officielle, et une formation continue sur ce qui compte vraiment dans le quotidien de nos animaux, en fonction de leur espèce et de leur race."
           />
 
           {/* Bloc ACACED, mis en avant */}
@@ -115,7 +116,13 @@ export default function QuiSuisJe() {
             </div>
           </Reveal>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <Reveal delai={120}>
+            <Annotation direction="bas-droite" className="mt-8 ml-4 max-w-[300px] sm:ml-16" rotation={-2}>
+              {"Une certification qui\nm'a beaucoup apporté"}
+            </Annotation>
+          </Reveal>
+
+          <div className="mt-4 grid gap-6 md:grid-cols-2">
             {fondatrice.competences.slice(1).map((c, i) => (
               <Reveal
                 key={c.titre}

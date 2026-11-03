@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Annotation from "@/components/Annotation";
-import { Champ, Patte } from "@/components/Botanique";
+import { Patte } from "@/components/Botanique";
 import FormulaireContact from "@/components/FormulaireContact";
 import Reveal from "@/components/Reveal";
-import { EntetePage, ListeCommunes, TitreSection } from "@/components/Ui";
-import { communesGarde, photos } from "@/lib/content";
+import { EntetePage, TitreSection } from "@/components/Ui";
+import { photos } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -41,8 +41,7 @@ export default function Contact() {
             <p>Un échange téléphonique ne vous engage à rien.</p>
             <p>
               Parlez-moi de votre animal, de vos besoins de garde, de votre projet d&apos;adoption, ou
-              tout simplement de ce qui vous fait hésiter (à adopter… ou à me solliciter). On avisera
-              ensemble.
+              tout simplement de ce qui vous fait hésiter (à adopter… ou à me solliciter).
             </p>
           </>
         }
@@ -55,26 +54,19 @@ export default function Contact() {
       {/* COORDONNÉES                                                  */}
       {/* ============================================================ */}
       <section className="mx-auto max-w-[1240px] px-5 pt-12 sm:px-8 sm:pt-16">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2">
           {[
             {
-              label: "Par téléphone",
+              label: "Par téléphone ou message",
               valeur: site.contact.phone,
               href: `tel:${site.contact.phoneHref}`,
-              note: "Du lundi au samedi. Si je ne réponds pas, je suis avec un animal. Laissez-moi un message.",
+              note: "Du lundi au samedi. Si je ne réponds pas, je suis avec un animal. Laissez-moi un message ou un SMS.",
             },
             {
               label: "Par e-mail",
               valeur: site.contact.email,
               href: `mailto:${site.contact.email}`,
               note: "Réponse sous 24 à 48 h. Précisez vos dates et l'espèce concernée, ça fait gagner un aller-retour.",
-            },
-            {
-              // ⚠️ À VALIDER — le texte de cette carte était tronqué dans le document de correctifs.
-              label: "Par message",
-              valeur: site.contact.phone,
-              href: `sms:${site.contact.phoneHref}`,
-              note: "Un SMS avec vos dates et votre animal, et je vous recontacte dès que possible.",
             },
           ].map((c, i) => (
             <Reveal
@@ -127,41 +119,6 @@ export default function Contact() {
           </div>
 
           <FormulaireContact />
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* ZONE                                                         */}
-      {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-mousse py-24 text-creme">
-        <div className="absolute inset-x-0 bottom-0 h-28 opacity-25">
-          <Champ className="h-full w-full" densite={22} />
-        </div>
-        <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <p className="surtitre text-tendre">Où j&apos;interviens</p>
-              <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
-                Au départ de {site.zone.ville}, au nord de Rennes.
-              </h2>
-              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-creme/75">
-                <strong className="font-medium text-creme">Garde d&apos;animaux</strong> : dans un
-                rayon d&apos;environ {site.zone.rayonGardeKm} km autour de {site.zone.ville}.
-                <br />
-                <strong className="font-medium text-creme">Conseil à l&apos;adoption</strong> : sur
-                tout le département {site.zone.departementCode}.
-                <br />
-                Au-delà de ces rayons, une indemnité kilométrique de {site.zone.indemniteKm}{" "}
-                supplémentaire est appliquée.
-              </p>
-            </div>
-            <Reveal delai={100}>
-              <p className="mb-4 text-[11px] tracking-[0.24em] text-tendre uppercase">
-                Communes desservies pour la garde
-              </p>
-              <ListeCommunes communes={communesGarde} suite="et les communes alentour" />
-            </Reveal>
-          </div>
         </div>
       </section>
 

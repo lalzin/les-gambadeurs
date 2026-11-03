@@ -192,7 +192,7 @@ export const gardeDeroule = [
 export const faqGarde = [
   {
     q: "Quels animaux gardez-vous ?",
-    r: "Chiens, chats et NAC (nouveaux animaux de compagnie d'espèces domestiques) : lapins, cochons d'Inde, rongeurs, furets, oiseaux, amphibiens et poissons. Chaque espèce a des besoins spécifiques, et c'est justement le point de départ de notre travail. Je ne prends pas en charge les NAC d'espèces non domestiques (serpent, oiseau exotique, mygale, etc.), qui nécessitent une formation spécifique et dont le cadre légal est très différent.",
+    r: "Chiens, chats et NAC (nouveaux animaux de compagnie d'espèces domestiques) : lapins, cochons d'Inde, rongeurs, furets, oiseaux, amphibiens et poissons. Chaque espèce a des besoins spécifiques, et c'est justement le point de départ de mon travail. Je ne prends pas en charge les NAC d'espèces non domestiques (serpent, oiseau exotique, mygale, etc.), qui nécessitent une formation spécifique et dont le cadre légal est très différent.",
   },
   {
     q: "Où intervenez-vous ?",
@@ -203,8 +203,8 @@ export const faqGarde = [
     r: "Non. L'administration de traitements par voie orale ou cutanée (traitement des insuffisances rénales, hypertensions, dermatites, parasites...) est possible : nous en parlons lors de la rencontre à domicile et le protocole est noté noir sur blanc. L'administration de médicaments par voie parentérale (comme les injections) est un acte de médecine vétérinaire que je ne suis pas habilitée à pratiquer.",
   },
   {
-    q: "Comment recevez-vous des nouvelles ?",
-    r: "À chaque passage, vous recevez un message avec photos ou vidéos : ce qu'il a mangé, comment il s'est comporté, ce qui a été fait. Aucun besoin de relancer.",
+    q: "Reçoit-on des nouvelles pendant notre absence ?",
+    r: "À chaque passage, vous recevez un message avec photos ou vidéos : ce qu'il a mangé, comment il s'est comporté, ce qui a été fait. Aucun besoin de relancer. Pour ceux qui préfèrent être tranquilles et couper complètement : c'est possible aussi.",
   },
   {
     q: "Faut-il réserver longtemps à l'avance ?",
@@ -360,21 +360,6 @@ export const faqAdoption = [
  * local. Elles se situent dans un rayon d'environ 30 km autour de Vignoc.
  * Ajoutez ou retirez librement : ces noms alimentent directement le SEO local.
  */
-/**
- * Communes citées pour la garde d'animaux à domicile : rayon d'environ 15 km
- * autour de Vignoc, liste donnée par la cliente (correctifs FAQ du 24/08/26).
- */
-export const communesGarde = [
-  "Vignoc",
-  "La Mézière",
-  "La Chapelle-des-Fougeretz",
-  "Hédé-Bazouges",
-  "Tinténiac",
-  "Melesse",
-  "Saint-Grégoire",
-  "Montgermont",
-];
-
 export const communes = [
   "Vignoc",
   "Hédé-Bazouges",
@@ -400,6 +385,13 @@ export const communes = [
   "Rennes",
 ];
 
+/**
+ * Communes affichées pour la garde d'animaux (rayon de 15 km autour de Vignoc) :
+ * la liste générale, moins les communes retirées par la cliente (28/10/26).
+ */
+const HORS_ZONE_GARDE = ["Québriac", "Betton", "Chevaigné"];
+export const communesGarde = communes.filter((c) => !HORS_ZONE_GARDE.includes(c));
+
 /* ------------------------------------------------------------------ */
 /* QUI SUIS-JE                                                         */
 /* ------------------------------------------------------------------ */
@@ -424,7 +416,7 @@ export const fondatrice = {
     {
       titre: "ACACED",
       detail:
-        "Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques, la certification officielle exigée pour exercer une activité professionnelle auprès des chiens, chats et autres animaux de compagnie.",
+        "Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques, la certification officielle exigée pour exercer une activité professionnelle auprès des chiens, chats et Nouveaux Animaux de Compagnie.",
     },
     {
       titre: "Besoins biologiques & éthologie",

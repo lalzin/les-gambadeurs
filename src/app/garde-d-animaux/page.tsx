@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Annotation from "@/components/Annotation";
-import { Epi, Patte } from "@/components/Botanique";
+import { Champ, Epi, Patte } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
 import {
   BandeauRdv,
   Bouton,
   CartePrestation,
   EntetePage,
+  ListeCommunes,
   PhotoArche,
   TitreSection,
 } from "@/components/Ui";
-import { gardeDeroule, photos, prestationsGarde } from "@/lib/content";
+import { communesGarde, gardeDeroule, photos, prestationsGarde } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -163,6 +164,39 @@ export default function GardeAnimaux() {
               {"Chez lui, il garde\nson rythme et ses repères"}
             </Annotation>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* COMMUNES DESSERVIES                                          */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-brun py-24 text-creme">
+        <div className="absolute inset-x-0 bottom-0 h-28 opacity-20">
+          <Champ className="h-full w-full" densite={22} />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+            <div>
+              <p className="surtitre text-sable">Communes desservies</p>
+              <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
+                Périphérie nord de Rennes.
+              </h2>
+              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-creme/75">
+                Les prestations de garde d&apos;animaux sont proposées dans les communes du nord de
+                Rennes, dans un rayon de {site.zone.rayonGardeKm} km au départ de {site.zone.ville}.
+                Au-delà, une indemnité kilométrique de {site.zone.indemniteKm} supplémentaire est
+                facturée.
+              </p>
+              <div className="mt-9">
+                <Bouton href="/contact" variante="clair">
+                  Me contacter
+                </Bouton>
+              </div>
+            </div>
+            <Reveal delai={100}>
+              <ListeCommunes communes={communesGarde} />
+            </Reveal>
+          </div>
         </div>
       </section>
 
