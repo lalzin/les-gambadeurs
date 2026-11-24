@@ -144,12 +144,12 @@ export default function QuiSuisJe() {
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-brun py-28 text-creme">
         <div className="absolute inset-x-0 bottom-0 h-28 opacity-20">
-          <Champ className="h-full w-full" densite={22} />
+          <Champ className="h-full w-full" densite={14} />
         </div>
 
         <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="surtitre text-sable">Ce qui guide chaque décision</p>
+            <p className="surtitre text-sable-clair">Ce qui guide chaque décision</p>
             <h2 className="titre mt-5 text-[clamp(2rem,4.6vw,3.2rem)] text-creme">
               Mon rôle : vous guider.
             </h2>
@@ -169,7 +169,7 @@ export default function QuiSuisJe() {
                 delai={i * 100}
                 className="rounded-[24px] border border-creme/15 bg-creme/5 p-7"
               >
-                <p className="text-[11px] tracking-[0.24em] text-sable uppercase">{b.t}</p>
+                <p className="text-[11px] tracking-[0.24em] text-sable-clair uppercase">{b.t}</p>
                 <p className="mt-4 text-[15.5px] leading-relaxed text-creme/85">{b.c}</p>
               </Reveal>
             ))}

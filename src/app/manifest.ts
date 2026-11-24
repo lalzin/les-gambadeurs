@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${site.name} | ${site.baseline}`,
     short_name: site.name,
     description:
-      "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",
+      "Garde d'animaux et conseil à l'adoption au nord de Rennes et en Ille-et-Vilaine. Chiens, chats et NAC.",
     lang: "fr",
     start_url: "/",
     display: "standalone",

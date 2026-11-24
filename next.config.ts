@@ -41,6 +41,11 @@ const enTetes = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
 ];
 
+// Les déploiements de prévisualisation ne doivent pas être indexés (contenu dupliqué).
+if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") {
+  enTetes.push({ key: "X-Robots-Tag", value: "noindex, nofollow" });
+}
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async headers() {

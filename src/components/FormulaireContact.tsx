@@ -74,7 +74,7 @@ export default function FormulaireContact() {
             {SUJETS.map((s, i) => (
               <label
                 key={s.valeur}
-                className="cursor-pointer rounded-full border border-brun/15 bg-papier px-4 py-2.5 text-[14px] text-encre/80 transition-colors has-checked:border-terre has-checked:bg-terre has-checked:text-creme"
+                className="cursor-pointer rounded-full border border-brun/15 bg-papier px-4 py-2.5 text-[14px] text-encre/80 transition-colors has-checked:border-terre-fonce has-checked:bg-terre-fonce has-checked:text-creme"
               >
                 <input
                   type="radio"
@@ -220,14 +220,14 @@ export default function FormulaireContact() {
           <button
             type="submit"
             disabled={enCours}
-            className="group inline-flex items-center gap-2.5 rounded-full bg-terre px-7 py-3.5 text-[14px] font-medium text-creme transition-all duration-400 hover:-translate-y-0.5 hover:bg-brun hover:shadow-[0_16px_38px_-16px_var(--color-brun)] disabled:pointer-events-none disabled:opacity-60"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-terre-fonce px-7 py-3.5 text-[14px] font-medium text-creme transition-all duration-400 hover:-translate-y-0.5 hover:bg-brun hover:shadow-[0_16px_38px_-16px_var(--color-brun)] disabled:pointer-events-none disabled:opacity-60"
           >
             {enCours ? "Envoi en cours…" : "Envoyer ma demande"}
             <span className="inline-block transition-transform duration-400 group-hover:translate-x-1">
               →
             </span>
           </button>
-          <p className="text-[13px] text-encre/55">
+          <p className="text-[13px] text-encre/75">
             Ou appelez le{" "}
             <a href={`tel:${site.contact.phoneHref}`} className="text-terre hover:underline">
               {site.contact.phone}

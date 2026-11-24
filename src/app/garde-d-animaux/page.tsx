@@ -16,14 +16,14 @@ import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Garde d'animaux à domicile (35)",
+  title: "Garde chien, chat et NAC au nord de Rennes",
   description:
-    "Visites, promenades et séjours pour chiens, chats et NAC à votre domicile, autour de Vignoc et de Rennes. Nouvelles et photos à chaque passage.",
+    "Visites à domicile, promenades et pension pour chiens, chats et NAC, à Vignoc et dans un rayon de 15 km au nord de Rennes. Nouvelles et photos à chaque passage.",
   alternates: { canonical: "/garde-d-animaux" },
   openGraph: openGraph({
-    title: "Garde d'animaux à domicile en Ille-et-Vilaine | Les Gambadeurs",
+    title: "Garde d'animaux au nord de Rennes | Les Gambadeurs",
     description:
-      "Visites, promenades et séjours pour chiens, chats et NAC, dans leurs repères. Ille-et-Vilaine.",
+      "Visites à domicile, promenades et pension pour chiens, chats et NAC, au nord de Rennes.",
     url: "/garde-d-animaux",
   }),
 };
@@ -172,12 +172,12 @@ export default function GardeAnimaux() {
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-brun py-24 text-creme">
         <div className="absolute inset-x-0 bottom-0 h-28 opacity-20">
-          <Champ className="h-full w-full" densite={22} />
+          <Champ className="h-full w-full" densite={14} />
         </div>
         <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="surtitre text-sable">Communes desservies</p>
+              <p className="surtitre text-sable-clair">Communes desservies</p>
               <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
                 Périphérie nord de Rennes.
               </h2>

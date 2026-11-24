@@ -118,11 +118,16 @@ export default function Confidentialite() {
         </p>
       </BlocTexte>
 
-      <BlocTexte titre="Cookies">
+      <BlocTexte titre="Cookies et mesure d'audience">
         <p>
-          Ce site ne dépose aucun cookie de mesure d&apos;audience ni de publicité, aucune bannière
-          de consentement n&apos;est donc nécessaire pour le consulter. Aucun service tiers n&apos;est
-          chargé lors de la navigation.
+          Ce site ne dépose aucun cookie, ni de mesure d&apos;audience ni de publicité : aucune
+          bannière de consentement n&apos;est donc nécessaire pour le consulter.
+        </p>
+        <p>
+          Lorsqu&apos;elle est active, la mesure d&apos;audience anonyme est assurée par Vercel Web Analytics : pages vues,
+          provenance, type d&apos;appareil. Elle ne dépose aucun cookie, ne suit pas les visiteurs
+          d&apos;un site à l&apos;autre et ne permet pas de les identifier. Les performances
+          d&apos;affichage sont mesurées de la même manière (Vercel Speed Insights).
         </p>
       </BlocTexte>
 

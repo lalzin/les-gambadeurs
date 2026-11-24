@@ -50,7 +50,7 @@ export default function Header() {
             <span className="titre block text-[13px] tracking-[0.14em] uppercase sm:text-[15px] sm:tracking-[0.16em]">
               Les Gambadeurs
             </span>
-            <span className="mt-1 hidden text-[10px] tracking-[0.22em] text-sable uppercase sm:block">
+            <span className="mt-1 hidden text-[10px] tracking-[0.22em] text-sable-fonce uppercase sm:block">
               Garde &amp; conseil
             </span>
           </span>
@@ -82,7 +82,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <a
             href={`tel:${site.contact.phoneHref}`}
-            className="hidden rounded-full bg-terre px-5 py-2.5 text-[13px] font-medium text-creme transition-all duration-300 hover:bg-brun hover:shadow-[0_10px_28px_-12px_var(--color-brun)] sm:inline-block"
+            className="hidden rounded-full bg-terre-fonce px-5 py-2.5 text-[13px] font-medium text-creme transition-all duration-300 hover:bg-brun hover:shadow-[0_10px_28px_-12px_var(--color-brun)] sm:inline-block"
           >
             {site.contact.phone}
           </a>
@@ -131,7 +131,7 @@ export default function Header() {
           ))}
           <a
             href={`tel:${site.contact.phoneHref}`}
-            className="mt-5 block rounded-full bg-terre px-5 py-3.5 text-center text-sm text-creme"
+            className="mt-5 block rounded-full bg-terre-fonce px-5 py-3.5 text-center text-sm text-creme"
           >
             Appeler le {site.contact.phone}
           </a>

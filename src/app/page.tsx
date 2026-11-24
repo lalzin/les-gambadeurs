@@ -9,14 +9,14 @@ import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${site.name} | Garde d'animaux en Ille-et-Vilaine`,
+  title: `${site.name} | Garde d'animaux au nord de Rennes`,
   description:
-    "Garde de chiens, chats et NAC à domicile et conseil à l'adoption, à Vignoc et autour de Rennes (35). Premier échange téléphonique offert.",
+    "Garde de chiens, chats et NAC (visites, promenades, pension) et conseil à l'adoption, à Vignoc et au nord de Rennes. Titulaire de l'ACACED.",
   alternates: { canonical: "/" },
   openGraph: openGraph({
     title: `${site.name} | Garde d'animaux & conseil à l'adoption`,
     description:
-      "Garde de chiens, chats et NAC à domicile et conseil à l'adoption en Ille-et-Vilaine. Premier échange offert.",
+      "Visites, promenades, pension et conseil à l'adoption pour chiens, chats et NAC, au nord de Rennes et en Ille-et-Vilaine.",
     url: "/",
   }),
 };
@@ -58,43 +58,42 @@ export default function Accueil() {
         {/* collines + champ */}
         <Collines className="absolute inset-x-0 bottom-0 -z-10 h-[34vh] w-full" />
         <div className="pointer-events-none absolute inset-x-0 -bottom-2 -z-10 h-44">
-          <Champ className="h-full w-full" densite={24} />
+          <Champ className="h-full w-full" densite={20} />
         </div>
 
         <div className="relative mx-auto grid max-w-[1240px] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
-            <Reveal>
-              <p className="surtitre flex items-center gap-3">
-                Ille-et-Vilaine · Vignoc &amp; alentours
-                <span className="filet hidden w-14 sm:block" />
-              </p>
-            </Reveal>
+            <p className="surtitre entree flex items-center gap-3">
+              Ille-et-Vilaine · Vignoc &amp; alentours
+              <span className="filet hidden w-14 sm:block" />
+            </p>
 
-            <Reveal delai={90}>
+            {/* Titre principal visible immédiatement : c'est l'élément LCP. */}
+            <div>
               <h1 className="mt-7">
                 <span className="titre block text-[clamp(3.2rem,9vw,6.6rem)]">
                   Les Gambadeurs
                 </span>
                 <span className="mt-6 block max-w-lg font-sans text-[clamp(1.05rem,2.3vw,1.5rem)] leading-snug font-light text-encre/80">
                   Garde d&apos;animaux &amp; conseil à l&apos;adoption
-                  <span className="mt-1 block text-encre/45">pour les chiens, les chats et les NAC</span>
+                  <span className="mt-1 block text-encre/60">pour les chiens, les chats et les NAC</span>
                 </span>
               </h1>
-            </Reveal>
+            </div>
 
-            <Reveal delai={260}>
+            <div className="entree" style={{ "--delai": "180ms" } as React.CSSProperties}>
               <div className="mt-11 flex flex-wrap items-center gap-4">
                 <Bouton href="/contact">Me contacter</Bouton>
                 <Bouton href="/garde-d-animaux" variante="ligne">
                   Découvrir les prestations
                 </Bouton>
               </div>
-            </Reveal>
+            </div>
 
           </div>
 
           {/* photo principale */}
-          <Reveal delai={220} className="relative">
+          <div className="entree relative" style={{ "--delai": "120ms" } as React.CSSProperties}>
             <div className="relative mx-auto w-full max-w-[440px]">
               <div className="arche relative aspect-[4/5] w-full overflow-hidden bg-lin shadow-[0_60px_100px_-60px_var(--color-brun)]">
                 <Image
@@ -122,7 +121,7 @@ export default function Accueil() {
                 couleurCoeur="var(--color-brun)"
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -251,7 +250,7 @@ export default function Accueil() {
         <div className="mt-16 grid gap-10 md:grid-cols-3">
           {piliers.map((p, i) => (
             <Reveal key={p.titre} delai={i * 110} className="relative">
-              <span className="titre block text-[46px] text-lin">0{i + 1}</span>
+              <span aria-hidden className="titre block text-[46px] text-[#a38c6c]">0{i + 1}</span>
               <h3 className="titre mt-3 text-[22px]">{p.titre}</h3>
               <p className="prose-gambadeurs mt-4 text-[15.5px]">{p.texte}</p>
               <span className="filet mt-8 block w-16" />
@@ -308,7 +307,7 @@ export default function Accueil() {
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-mousse py-28 text-creme sm:py-36">
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 opacity-25">
-          <Champ className="h-full w-full" densite={24} />
+          <Champ className="h-full w-full" densite={14} />
         </div>
 
         <div className="relative mx-auto max-w-[900px] px-5 text-center sm:px-8">

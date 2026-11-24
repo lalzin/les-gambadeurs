@@ -9,8 +9,22 @@ export const site = {
   name: "Les Gambadeurs",
   baseline: "Garde d'animaux & Conseil à l'adoption",
   espaces: "Chiens · Chats · NAC",
-  // ⚠️ À COMPLÉTER : remplacer par le domaine définitif une fois acheté / branché sur Vercel.
-  url: "https://www.lesgambadeurs.fr",
+  /**
+   * Adresse canonique du site : URL canoniques, sitemap, robots.txt, Open Graph
+   * et données structurées en dépendent. À l'arrivée du domaine, la définir sur
+   * Vercel (variable NEXT_PUBLIC_SITE_URL, sans « / » final) puis redéployer :
+   * aucune modification de code n'est nécessaire.
+   */
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.lesgambadeurs.fr").replace(/\/$/, ""),
+  /** Vrai uniquement sur le déploiement de production Vercel (ou en local) */
+  indexable: !process.env.VERCEL_ENV || process.env.VERCEL_ENV === "production",
+  /**
+   * Mesure d'audience Vercel (sans cookie). S'active en mettant la variable
+   * NEXT_PUBLIC_MESURE_AUDIENCE=on sur Vercel, APRÈS avoir activé « Web
+   * Analytics » et « Speed Insights » dans le tableau de bord du projet :
+   * sans cela, leurs scripts n'existent pas et le navigateur signale une erreur.
+   */
+  mesureAudience: process.env.NEXT_PUBLIC_MESURE_AUDIENCE === "on",
   locale: "fr_FR",
   contact: {
     phone: "06 72 62 35 75",

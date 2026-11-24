@@ -57,7 +57,7 @@ export function Bouton({
 }) {
   const styles = {
     plein:
-      "bg-terre text-creme hover:bg-brun hover:shadow-[0_16px_38px_-16px_var(--color-brun)] hover:-translate-y-0.5",
+      "bg-terre-fonce text-creme hover:bg-brun hover:shadow-[0_16px_38px_-16px_var(--color-brun)] hover:-translate-y-0.5",
     ligne: "border border-brun/25 text-brun hover:border-brun hover:bg-brun hover:text-creme",
     clair: "bg-creme text-brun hover:bg-lin",
   }[variante];
@@ -147,7 +147,7 @@ export function CartePrestation({
         <div>
           <h3 className="titre text-[24px] leading-tight">{p.nom}</h3>
           {p.duree && (
-            <p className="mt-2 text-[12px] tracking-[0.14em] text-sable uppercase">{p.duree}</p>
+            <p className="mt-2 text-[12px] tracking-[0.14em] text-sable-fonce uppercase">{p.duree}</p>
           )}
         </div>
         <Patte className="mt-1 h-5 w-5 shrink-0 text-lin transition-colors duration-500 group-hover:text-olive" />
@@ -196,7 +196,7 @@ export function BandeauRdv({
   return (
     <section className="relative overflow-hidden bg-mousse py-24 text-creme">
       <div className="absolute inset-x-0 bottom-0 h-28 opacity-30">
-        <Champ className="h-full w-full" densite={20} />
+        <Champ className="h-full w-full" densite={14} />
       </div>
       <Tournesol
         className="absolute -top-10 -right-10 h-52 w-52 opacity-15"
@@ -260,9 +260,10 @@ export function EntetePage({
         <FilAriane page={fil ?? titre} href={href} />
       </div>
       <div className="mx-auto grid max-w-[1240px] items-center gap-12 px-5 pt-6 sm:px-8 lg:grid-cols-[1.15fr_0.85fr]">
+        {/* Haut de page visible immédiatement (titre = élément LCP) */}
         <div>
-          <Reveal>
-            <p className="surtitre flex items-center gap-3">
+          <div>
+            <p className="surtitre entree flex items-center gap-3">
               {surtitre}
               <span className="filet w-12" />
             </p>
@@ -274,9 +275,9 @@ export function EntetePage({
               {titre}
             </h1>
             {intro && <div className="prose-gambadeurs mt-7 max-w-xl text-[18px]">{intro}</div>}
-          </Reveal>
+          </div>
         </div>
-        <Reveal delai={140} className="relative">
+        <div className="entree relative" style={{ "--delai": "120ms" } as React.CSSProperties}>
           <PhotoArche
             src={photo}
             alt={photoAlt}
@@ -285,10 +286,10 @@ export function EntetePage({
             className="ml-auto aspect-[3/4] w-full max-w-[380px]"
             sizes="(max-width: 1024px) 80vw, 380px"
           />
-        </Reveal>
+        </div>
       </div>
       <div className="pointer-events-none absolute inset-x-0 -bottom-1 -z-10 h-28 opacity-70">
-        <Champ className="h-full w-full" densite={18} />
+        <Champ className="h-full w-full" densite={14} />
       </div>
     </section>
   );
@@ -372,7 +373,7 @@ export function FilAriane({ page, href }: { page: string; href?: string }) {
 
   return (
     <nav aria-label="Fil d'Ariane" className="text-[12px]">
-      <ol className="flex flex-wrap items-center gap-2 text-encre/50">
+      <ol className="flex flex-wrap items-center gap-2 text-encre/65">
         <li>
           <Link href="/" className="hover:text-brun">
             Accueil
@@ -432,7 +433,7 @@ export function ListeCommunes({
         </li>
       ))}
       {suite && (
-        <li className={`break-inside-avoid py-1.5 italic ${sombre ? "text-creme/60" : "text-encre/55"}`}>
+        <li className={`break-inside-avoid py-1.5 italic ${sombre ? "text-creme/75" : "text-encre/70"}`}>
           {suite}
         </li>
       )}

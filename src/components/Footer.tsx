@@ -28,7 +28,7 @@ export default function Footer() {
                 Les comprendre, pas seulement les aimer.
               </span>
             </p>
-            <p className="mt-6 max-w-xs text-[12.5px] leading-relaxed text-creme/45">
+            <p className="mt-6 max-w-xs text-[12.5px] leading-relaxed text-creme/70">
               Titulaire de l&apos;ACACED, activité déclarée auprès de la DDPP et couverte par une
               assurance responsabilité civile professionnelle.
             </p>
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <nav aria-label="Pages du site">
-            <h2 className="text-[11px] tracking-[0.24em] text-sable uppercase">Le site</h2>
+            <h2 className="text-[11px] tracking-[0.24em] text-sable-clair uppercase">Le site</h2>
             <ul className="mt-5 space-y-3 text-sm">
               {nav.map((l) => (
                 <li key={l.href}>
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h2 className="text-[11px] tracking-[0.24em] text-sable uppercase">Contact</h2>
+            <h2 className="text-[11px] tracking-[0.24em] text-sable-clair uppercase">Contact</h2>
             <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a href={`tel:${site.contact.phoneHref}`} className="text-creme/75 hover:text-creme">
@@ -62,7 +62,7 @@ export default function Footer() {
                   {site.contact.email}
                 </a>
               </li>
-              <li className="text-creme/60">
+              <li className="text-creme/75">
                 {site.zone.ville} ({site.zone.departementCode}), {site.zone.departement}
               </li>
               {site.social.instagram && (
@@ -105,7 +105,7 @@ export default function Footer() {
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-[12.5px]">
               {navLegal.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-creme/60 transition-colors hover:text-creme">
+                  <Link href={l.href} className="text-creme/75 transition-colors hover:text-creme">
                     {l.label}
                   </Link>
                 </li>
@@ -113,7 +113,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/sitemap.xml"
-                  className="text-creme/60 transition-colors hover:text-creme"
+                  className="text-creme/75 transition-colors hover:text-creme"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,7 +131,7 @@ export default function Footer() {
               height={120}
               className="h-14 w-14 opacity-60"
             />
-            <p className="text-center text-[11.5px] leading-relaxed text-creme/40 sm:text-right">
+            <p className="text-center text-[11.5px] leading-relaxed text-creme/70 sm:text-right">
               © {annee} {entreprise.raisonSociale}
               {siret && ` · SIRET ${siret}`}
               <br />

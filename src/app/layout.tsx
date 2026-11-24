@@ -1,7 +1,10 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Caveat, Fraunces, Outfit } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { communesGarde, fondatrice, prestationsGarde } from "@/lib/content";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine : chiens, chats et NAC. Une approche fondée sur les besoins biologiques de votre animal, à Vignoc et autour de Rennes.",
+    "Garde d'animaux (visites, promenades, pension) et conseil à l'adoption pour chiens, chats et NAC, à Vignoc, au nord de Rennes et en Ille-et-Vilaine.",
   applicationName: site.name,
   authors: [{ name: site.name }],
   creator: site.name,
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.baseline}`,
     description:
-      "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",
+      "Garde d'animaux et conseil à l'adoption au nord de Rennes et en Ille-et-Vilaine. Chiens, chats et NAC.",
     images: [
       {
         url: "/og.png",
@@ -68,15 +71,29 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} | ${site.baseline}`,
     description:
-      "Garde d'animaux à domicile et conseil à l'adoption en Ille-et-Vilaine. Chiens, chats et NAC.",
+      "Garde d'animaux et conseil à l'adoption au nord de Rennes et en Ille-et-Vilaine. Chiens, chats et NAC.",
     images: ["/og.png"],
   },
   robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    index: site.indexable,
+    follow: site.indexable,
+    googleBot: {
+      index: site.indexable,
+      follow: site.indexable,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   category: "Animaux de compagnie",
+  // Vérification de propriété : renseigner les variables sur Vercel, puis redéployer.
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+      : {}),
+  },
 };
 
 export const viewport: Viewport = {
@@ -92,7 +109,7 @@ const donneesStructurees = {
   name: site.name,
   alternateName: `${site.name} | ${site.baseline}`,
   description:
-    "Garde d'animaux à domicile (chiens, chats, NAC) et conseil à l'adoption en Ille-et-Vilaine.",
+    "Garde d'animaux (visites à domicile, promenades, pension) et conseil à l'adoption pour chiens, chats et NAC, au nord de Rennes et en Ille-et-Vilaine.",
   url: site.url,
   telephone: `+33${site.contact.phoneHref.slice(3)}`,
   email: site.contact.email,
@@ -115,7 +132,23 @@ const donneesStructurees = {
       geoMidpoint: { "@type": "GeoCoordinates", latitude: site.zone.lat, longitude: site.zone.lng },
       geoRadius: site.zone.rayonGardeKm * 1000,
     },
+    // Communes nommées une à une : signal fort pour la recherche locale.
+    ...communesGarde.map((ville) => ({
+      "@type": "City",
+      name: ville,
+      containedInPlace: { "@type": "AdministrativeArea", name: "Ille-et-Vilaine" },
+    })),
   ],
+  founder: {
+    "@type": "Person",
+    name: fondatrice.prenom,
+    jobTitle: fondatrice.poste,
+    url: `${site.url}/qui-suis-je`,
+  },
+  knowsLanguage: "fr",
+  ...(Object.values(site.social).some(Boolean)
+    ? { sameAs: Object.values(site.social).filter(Boolean) }
+    : {}),
   knowsAbout: [
     "Besoins biologiques des animaux de compagnie",
     "Éthologie appliquée",
@@ -128,9 +161,25 @@ const donneesStructurees = {
     name: "ACACED : Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques",
   },
   makesOffer: [
-    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Garde d'animaux à domicile" } },
-    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Visites et promenades" } },
-    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Conseil à l'adoption" } },
+    ...prestationsGarde.map((p) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: p.nom.replace(/[«»]/g, "").trim(),
+        description: p.detail,
+        serviceType: "Garde d'animaux",
+        url: `${site.url}/garde-d-animaux`,
+      },
+    })),
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Conseil à l'adoption",
+        serviceType: "Conseil avant, pendant et après l'adoption d'un animal",
+        url: `${site.url}/conseil-a-l-adoption`,
+      },
+    },
   ],
 };
 
@@ -177,6 +226,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="contenu">{children}</main>
         <Footer />
+        {/* Mesure d'audience et performances réelles : sans cookie, servies par
+            le domaine du site, donc compatibles avec la CSP et sans bandeau. */}
+        {site.mesureAudience && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(donneesStructurees) }}

@@ -10,6 +10,11 @@
   --color-creme: #f5ece3;
   --color-lin: #e3d9ca;
   --color-sable: #b89772;
+  /* variantes lisibles (WCAG AA) pour le texte : la teinte de marque reste
+     réservée aux décors */
+  --color-sable-fonce: #7f6243;
+  --color-sable-clair: #dcc6a6;
+  --color-terre-fonce: #9a5536;
   --color-terre: #a35c3d;
   --color-brun: #5f4028;
   --color-encre: #3a2718;
@@ -108,12 +113,12 @@ body::after {
   font-size: 0.6875rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-terre);
+  color: var(--color-terre-fonce);
 }
 
 @utility main-note {
   font-family: var(--font-hand);
-  color: var(--color-sable);
+  color: var(--color-sable-fonce);
   font-size: 1.375rem;
   line-height: 1.2;
 }
@@ -221,6 +226,14 @@ body::after {
 }
 .anim .reveal.vu {
   animation: leve 0.9s var(--ease-doux) both;
+  animation-delay: var(--delai, 0ms);
+}
+
+/* Entrée du haut de page : animation purement CSS, lancée dès le premier
+   affichage. Contrairement à .reveal, elle n'attend pas le JavaScript, ce qui
+   préserve le LCP (le titre principal s'affiche immédiatement). */
+.entree {
+  animation: leve 0.8s var(--ease-doux) both;
   animation-delay: var(--delai, 0ms);
 }
 

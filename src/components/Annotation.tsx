@@ -82,7 +82,7 @@ export default function Annotation({
 }) {
   const flecheAGauche = direction.endsWith("gauche");
   return (
-    <div className={`flex items-start gap-1 text-sable ${className}`} aria-hidden="true">
+    <div className={`flex items-start gap-1 text-sable-fonce ${className}`}>
       {flecheAGauche && <Fleche direction={direction} className="mt-1 h-10 w-12 shrink-0" />}
       <span
         className="main-note block whitespace-pre-line"

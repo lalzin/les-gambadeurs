@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Questions fréquentes",
+  title: "Garde d'animaux et adoption : vos questions",
   description:
     "Animaux gardés, communes desservies, traitements, tarifs, délais de réservation : les réponses aux questions les plus posées sur la garde et l'adoption.",
   alternates: { canonical: "/faq" },

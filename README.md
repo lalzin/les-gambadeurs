@@ -180,23 +180,44 @@ contenu limitée au site lui-même, `X-Frame-Options`, `X-Content-Type-Options`,
 retirée. ⚠️ Ajouter un outil tiers (mesure d'audience, chat) impose d'ajouter son
 domaine à la CSP, sinon le navigateur le bloque silencieusement.
 
-À faire après la mise en ligne :
-
-1. Déclarer le site dans [Google Search Console](https://search.google.com/search-console)
-   et y soumettre `https://<domaine>/sitemap.xml`.
-2. Créer une **fiche Google Business Profile** (le levier n° 1 en référencement local) avec
-   exactement les mêmes nom, téléphone et adresse que sur le site.
-3. S'inscrire sur les annuaires locaux (mairies, offices de tourisme, associations 35).
+Mesures Lighthouse (mobile, 24/11/2026) : SEO 100, accessibilité 100 et bonnes
+pratiques 100 sur toutes les pages principales ; performance 80 à 88.
 
 ---
 
-## Déploiement sur Vercel
+## Lancement du domaine (jour J)
 
-1. Pousser ce dossier sur GitHub.
-2. Sur [vercel.com](https://vercel.com) → **Add New… → Project** → importer le dépôt.
-   Vercel détecte Next.js automatiquement, aucune variable d'environnement n'est nécessaire.
-3. Brancher le domaine dans **Settings → Domains**, puis mettre à jour `url`
-   dans `src/lib/site.ts` et redéployer.
+Aucune modification de code n'est nécessaire : tout passe par des variables
+d'environnement Vercel (voir `.env.example`).
+
+1. **Brancher le domaine** sur Vercel (Settings → Domains). Choisir une seule
+   adresse principale (`www.lesgambadeurs.fr` conseillé) et rediriger les
+   autres vers elle (le domaine nu et `les-gambadeurs.vercel.app`, option
+   « Redirect to » de Vercel, en 308).
+2. **Déclarer l'adresse** : variable `NEXT_PUBLIC_SITE_URL` (ex.
+   `https://www.lesgambadeurs.fr`), puis **Redeploy**. URL canoniques, sitemap,
+   robots.txt, Open Graph et données structurées suivent automatiquement.
+3. **Google Search Console** : ajouter la propriété (idéalement « Domaine », par
+   enregistrement DNS), sinon par balise HTML via
+   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`. Soumettre ensuite
+   `https://<domaine>/sitemap.xml`.
+4. **Bing Webmaster Tools** (alimente aussi ChatGPT et Copilot) : importer la
+   propriété depuis Search Console, ou `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
+5. **Fiche Google Business Profile** : le levier n° 1 en local. Catégorie
+   « Service de garde d'animaux de compagnie », zone desservie (sans adresse
+   publique si l'activité se fait chez les clients), mêmes nom, téléphone et
+   site que sur le site, photos, puis **demander des avis** aux premiers clients.
+6. **Mesure d'audience** : activer Web Analytics et Speed Insights dans Vercel,
+   puis `NEXT_PUBLIC_MESURE_AUDIENCE=on` et redéployer. Sans cookie : aucune
+   bannière de consentement nécessaire.
+7. **Formulaire** : vérifier le domaine dans Resend et renseigner
+   `CONTACT_FROM` avec une adresse du nouveau domaine (voir plus haut).
+8. **Annuaires locaux** : PagesJaunes, mairies de la zone, associations de
+   protection animale du 35. Toujours les mêmes nom, téléphone et adresse.
+
+Les déploiements de prévisualisation Vercel sont automatiquement exclus de
+l'indexation (en-tête `X-Robots-Tag` et robots.txt bloquant), pour éviter le
+contenu dupliqué.
 
 ---
 

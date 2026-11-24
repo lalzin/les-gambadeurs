@@ -33,7 +33,7 @@ export default function PageTexte({
           <FilAriane page={titre} href={href} />
           <h1 className="titre mt-8 text-[clamp(2.2rem,5.4vw,3.4rem)]">{titre}</h1>
           {chapo && <p className="prose-gambadeurs mt-6 text-[17px]">{chapo}</p>}
-          {maj && <p className="mt-6 text-[12.5px] text-sable">Dernière mise à jour : {maj}</p>}
+          {maj && <p className="mt-6 text-[12.5px] text-sable-fonce">Dernière mise à jour : {maj}</p>}
           <span className="filet mt-10 block w-full" />
         </div>
       </section>
@@ -59,7 +59,7 @@ export function ListeInfos({ lignes }: { lignes: [string, string][] }) {
     <dl className="mt-5 divide-y divide-brun/10 border-y border-brun/10">
       {lignes.map(([cle, valeur]) => (
         <div key={cle} className="flex flex-col gap-1 py-3.5 sm:flex-row sm:gap-6">
-          <dt className="w-56 shrink-0 text-[13px] tracking-[0.08em] text-sable uppercase">{cle}</dt>
+          <dt className="w-56 shrink-0 text-[13px] tracking-[0.08em] text-sable-fonce uppercase">{cle}</dt>
           <dd className="text-[15.5px] text-encre/85">{valeur}</dd>
         </div>
       ))}

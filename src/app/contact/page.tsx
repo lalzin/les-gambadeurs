@@ -9,7 +9,7 @@ import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact : garde et conseil à l'adoption",
   description:
     "Un échange téléphonique ne vous engage à rien : appelez, écrivez ou envoyez un message. Garde d'animaux et conseil à l'adoption autour de Rennes (35).",
   alternates: { canonical: "/contact" },

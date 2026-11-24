@@ -217,12 +217,12 @@ export default function ConseilAdoption() {
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-brun py-24 text-creme">
         <div className="absolute inset-x-0 bottom-0 h-28 opacity-20">
-          <Champ className="h-full w-full" densite={22} />
+          <Champ className="h-full w-full" densite={14} />
         </div>
         <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="surtitre text-sable">Communes desservies</p>
+              <p className="surtitre text-sable-clair">Communes desservies</p>
               <h2 className="titre mt-5 text-[clamp(2rem,4.4vw,3rem)] text-creme">
                 Sur l&apos;ensemble de l&apos;Ille-et-Vilaine.
               </h2>
