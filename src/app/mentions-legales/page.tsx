@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageTexte, { BlocTexte, ListeInfos } from "@/components/PageTexte";
-import { entreprise, hebergeur, mediateur, ou } from "@/lib/legal";
+import { cooperative, entreprise, hebergeur, mediateur, ou } from "@/lib/legal";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -22,20 +22,26 @@ export default function MentionsLegales() {
       titre="Mentions légales"
       href="/mentions-legales"
       chapo="Informations relatives à l'éditeur et à l'hébergeur de ce site, conformément à l'article 6 III de la loi pour la confiance dans l'économie numérique."
-      maj="août 2026"
+      maj="novembre 2026"
     >
       <BlocTexte titre="Éditeur du site">
+        <p>
+          Le présent site est édité par <strong>{cooperative.entrepreneure}, {cooperative.enseigne}</strong>,{" "}
+          {cooperative.statut} (ou titulaire d&apos;un contrat CAPE) au sein de la {cooperative.type}{" "}
+          <strong>{cooperative.nom}</strong>.
+        </p>
         <ListeInfos
           lignes={[
-            ["Dénomination", entreprise.raisonSociale],
+            ["Dénomination sociale", entreprise.raisonSociale],
             ["Forme juridique", ou(entreprise.formeJuridique)],
-            ["Siège social", ou(entreprise.adresse, `${site.zone.ville} (35), ${site.zone.departement}`)],
+            ["Siège social", ou(entreprise.adresse)],
             ["SIRET", ou(entreprise.siret)],
-            ["Immatriculation", ou(entreprise.immatriculation)],
-            ["TVA", entreprise.tva.trim() || entreprise.mentionFranchiseTva],
-            ["Téléphone", site.contact.phone],
-            ["E-mail", site.contact.email],
-            ["Responsable de la publication", ou(entreprise.responsablePublication)],
+            ["RCS", ou(entreprise.immatriculation)],
+            ["Code NAF / APE", entreprise.codeNaf],
+            ["TVA intracommunautaire", entreprise.tva.trim() || entreprise.mentionFranchiseTva],
+            ["Contact de l'entrepreneure", `${site.contact.email} / ${site.contact.phone}`],
+            ["Contact de la coopérative", `${cooperative.email} / ${cooperative.telephone}`],
+            ["Directrice de la publication", ou(entreprise.responsablePublication)],
           ]}
         />
       </BlocTexte>
@@ -82,22 +88,9 @@ export default function MentionsLegales() {
           lignes={[
             ["Médiateur", ou(mediateur.nom)],
             ["Adresse", ou(mediateur.adresse)],
-            ["Site", ou(mediateur.site)],
+            ["Site", mediateur.site ? `https://www.${mediateur.site}` : ou(mediateur.site)],
           ]}
         />
-        <p className="mt-5">
-          La plateforme européenne de règlement en ligne des litiges est également accessible à
-          l&apos;adresse{" "}
-          <a
-            href="https://ec.europa.eu/consumers/odr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-terre underline underline-offset-4"
-          >
-            ec.europa.eu/consumers/odr
-          </a>
-          .
-        </p>
       </BlocTexte>
 
       <BlocTexte titre="Propriété intellectuelle">

@@ -37,30 +37,21 @@ Les blocs à valider par la cliente sont signalés par un commentaire **`⚠️ 
 
 ## À compléter avant la mise en ligne
 
-1. **Tarifs « Garde d'animaux »** — `src/lib/content.ts` → `prestationsGarde`.
-   La brochure tarifaire de la garde n'était pas fournie (seule celle du conseil à l'adoption
-   l'était). Les cartes affichent « Tarif sur demande » tant que `prix` vaut `null` :
-   il suffit de renseigner `prix: "25 €"` (et `prixPromo` si besoin) pour que les montants
-   s'affichent.
-2. **Page « Qui suis-je »** — `src/lib/content.ts` → `fondatrice`.
-   Renseigner `prenom` (le titre de la page s'adapte automatiquement : « Bonjour, moi c'est … »),
-   relire les trois paragraphes de présentation, et remplacer les `experiences` par le parcours réel.
-3. **Communes desservies** — `src/lib/content.ts` → `communes`.
-   Liste proposée dans un rayon d'environ 30 km autour de Vignoc : à valider / compléter.
+1. **Tarifs** : `src/lib/content.ts` → `formulesGarde` (visites et promenades),
+   `prestationsGarde` (pension, transport, « Coup de frais ») et `prestationsAdoption*`.
+   Tous les prix s'affichent suivis de « TTC ». Les brochures PDF téléchargeables sont dans
+   `public/brochures/` : les remplacer en gardant le même nom de fichier à chaque nouvelle
+   grille tarifaire.
+2. **ACACED** : `src/lib/legal.ts` → `acaced` (numéro et date), et `declarationDdpp`
+   une fois les CERFA validés par la DDPP.
+3. **Passage en micro-entreprise** (prévu au printemps 2027) : l'activité est aujourd'hui
+   portée par la CAE Élan Créateur. Au changement de statut, remplacer les champs de
+   `entreprise` (SIRET, forme, adresse, TVA) et supprimer le bloc `cooperative` dans
+   `src/lib/legal.ts`, ainsi que ses usages (mentions légales, CGV, confidentialité, pied de page).
+4. **Communes desservies** : `src/lib/content.ts` → `communes` et `communesGarde`.
    Ces noms alimentent directement le référencement local.
-4. **Domaine** — `src/lib/site.ts` → `url`. Remplacer par le domaine définitif :
-   il alimente les URL canoniques, le sitemap, le `robots.txt` et les balises Open Graph.
-5. **Informations légales** — `src/lib/legal.ts`. Un seul fichier alimente les trois pages
-   légales. Tant qu'un champ est vide, la page affiche « à compléter » plutôt que de faire
-   disparaître la ligne. À renseigner :
-   - forme juridique, SIRET, SIREN, immatriculation, adresse du siège, responsable de
-     publication (obligatoire, art. 6 III de la LCEN) ;
-   - numéro d'ACACED et déclaration d'activité auprès de la DDPP (art. L214-6-1 du code
-     rural, obligatoire pour la garde d'animaux) ;
-   - compagnie et numéro de contrat de responsabilité civile professionnelle ;
-   - **médiateur de la consommation** : son adhésion est obligatoire pour tout
-     professionnel qui vend à des particuliers (art. L616-1 du code de la consommation),
-     et son nom doit figurer sur le site ainsi que sur les devis.
+5. **Offre de lancement** : `FIN_OFFRE` dans `src/lib/content.ts`. Les prix barrés et les
+   badges disparaissent seuls après cette date (pages régénérées toutes les heures).
 6. **Conditions générales** — `src/app/conditions-generales/page.tsx`. Trame complète et
    cohérente avec les prestations du site, **à faire relire** avant mise en ligne : elle
    engage la responsabilité de l'entreprise (délais d'annulation, urgences vétérinaires,

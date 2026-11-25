@@ -132,8 +132,8 @@ export default function Footer() {
               className="h-14 w-14 opacity-60"
             />
             <p className="text-center text-[11.5px] leading-relaxed text-creme/70 sm:text-right">
-              © {annee} {entreprise.raisonSociale}
-              {siret && ` · SIRET ${siret}`}
+              © {annee} Les Gambadeurs
+              {siret && ` · Activité portée par la CAE ${entreprise.raisonSociale}, SIRET ${siret}`}
               <br />
               Garde d&apos;animaux &amp; conseil à l&apos;adoption en {site.zone.departement}
             </p>

@@ -1,7 +1,7 @@
 /**
  * Informations légales — Les Gambadeurs
  * ------------------------------------------------------------------
- * ⚠️ À COMPLÉTER avant la mise en ligne. Les mentions légales sont
+ * Les mentions légales sont
  * obligatoires (art. 6 III de la LCEN) et l'absence de médiateur de la
  * consommation est sanctionnable pour un professionnel qui vend à des
  * particuliers (art. L616-1 du code de la consommation).
@@ -12,38 +12,47 @@
  * en « à compléter » plutôt que de disparaître silencieusement.
  */
 
+/**
+ * Daphné Privet exerce pour l'instant en entrepreneure-salariée au sein de la
+ * coopérative Élan Créateur, qui porte juridiquement l'activité. Passage en
+ * micro-entreprise prévu au printemps 2027 : il faudra alors remplacer ces
+ * informations (et retirer le bloc `cooperative`).
+ */
 export const entreprise = {
-  /** ⚠️ Ex. « Les Gambadeurs », « EI Prénom Nom », « Les Gambadeurs SASU »… */
-  raisonSociale: "Les Gambadeurs",
-  /** ⚠️ Ex. « Entreprise individuelle », « SASU au capital de 1 000 € » */
-  formeJuridique: "",
-  /** ⚠️ 14 chiffres */
-  siret: "",
-  /** ⚠️ 9 chiffres */
-  siren: "",
-  /** ⚠️ Ex. « RCS Rennes 000 000 000 » ou « Répertoire des métiers 35 » */
-  immatriculation: "",
-  /** ⚠️ Numéro de TVA intracommunautaire, ou laisser vide si franchise en base */
-  tva: "",
+  raisonSociale: "Élan Créateur",
+  formeJuridique: "SCOP SA à capital variable",
+  siret: "437 827 959 00010",
+  siren: "437 827 959",
+  immatriculation: "Rennes 437 827 959",
+  codeNaf: "7022Z",
+  tva: "FR02 437 827 959",
   /** Affiché si `tva` est vide (cas de la micro-entreprise) */
   mentionFranchiseTva: "TVA non applicable, article 293 B du Code général des impôts.",
-  /** ⚠️ Adresse complète du siège */
-  adresse: "",
-  /** ⚠️ Nom du responsable de la publication */
-  responsablePublication: "",
-  /** ⚠️ Compagnie et numéro de contrat de RC professionnelle */
-  assurance: "",
+  adresse: "7 rue Armand Herpin Lacroix, CS 73902, 35039 Rennes Cedex",
+  responsablePublication: "Daphné Privet",
+  assurance: "Generali, 38 boulevard Saint-Didier, BP 70004, 07200 Aubenas (04 75 35 54 04)",
   /** ⚠️ Numéro et date de l'ACACED, délivrée par la DDPP */
   acaced: "",
-  /** ⚠️ Numéro de déclaration d'activité auprès de la DDPP (art. L214-6-1 code rural) */
-  declarationDdpp: "",
+  /** Déclaration d'activité auprès de la DDPP (art. L214-6-1 code rural) */
+  declarationDdpp: "En cours de validation",
+};
+
+/** Coopérative d'activité et d'emploi qui porte l'activité. */
+export const cooperative = {
+  entrepreneure: "Daphné Privet",
+  enseigne: "Les Gambadeurs",
+  statut: "entrepreneure-salariée",
+  nom: "Élan Créateur",
+  type: "Coopérative d'Activité et d'Emploi (CAE)",
+  email: "contact@elancreateur.coop",
+  telephone: "02 99 35 21 59",
 };
 
 export const mediateur = {
-  /** ⚠️ Ex. « Médiation Solutions » — obligatoire pour les prestations aux particuliers */
-  nom: "",
-  adresse: "",
-  site: "",
+  nom: "Médiation Consommation Développement",
+  adresse:
+    "Centre d'Affaires Stéphanois, Immeuble l'Horizon, Esplanade de France, 3 rue J. Constant Milleret, 42000 Saint-Étienne",
+  site: "medconsodev.eu",
 };
 
 export const hebergeur = {

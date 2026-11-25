@@ -1,4 +1,11 @@
-import { communesGarde, prestationsAdoption, prestationsAdoptionApres, prestationsGarde } from "@/lib/content";
+import {
+  brochures,
+  communesGarde,
+  formulesGarde,
+  prestationsAdoption,
+  prestationsAdoptionApres,
+  prestationsGarde,
+} from "@/lib/content";
 import { site } from "@/lib/site";
 
 /**
@@ -11,9 +18,20 @@ export const dynamic = "force-static";
 const nom = (n: string) => n.replace(/[«»]/g, "").trim();
 
 export function GET() {
-  const garde = prestationsGarde.map((p) => `- ${nom(p.nom)}${p.duree ? ` (${p.duree})` : ""} : ${p.detail}`);
+  const ttc = (prix: string | null, texte = "sur demande") =>
+    prix === null ? texte : prix === "Offert" ? "offert" : `${prix} TTC`;
+  const garde = [
+    ...formulesGarde.map(
+      (f) =>
+        `- ${f.nom} (trajet inclus) : ${ttc(f.prix)}. Visite à domicile (${f.visite.pour}) : ${f.visite.detail} Promenade (${f.promenade.pour}) : ${f.promenade.detail}`,
+    ),
+    ...prestationsGarde.map(
+      (p) =>
+        `- ${nom(p.nom)}${p.duree ? ` (${p.duree})` : ""} : ${p.detail} Tarif : ${ttc(p.prix, p.prixTexte?.toLowerCase().replace(/^tarif /, ""))}.`,
+    ),
+  ];
   const adoption = [...prestationsAdoption, ...prestationsAdoptionApres].map(
-    (p) => `- ${p.nom} : ${p.detail} Tarif : ${p.prix ?? "sur demande"}.`,
+    (p) => `- ${p.nom} : ${p.detail} Tarif : ${ttc(p.prix)}.`,
   );
 
   const texte = `# ${site.name}
@@ -24,10 +42,12 @@ export function GET() {
 Rayon d'environ ${site.zone.rayonGardeKm} km autour de ${site.zone.ville} ; au-delà, indemnité kilométrique de ${site.zone.indemniteKm}.
 Communes : ${communesGarde.join(", ")}.
 ${garde.join("\n")}
+Brochure tarifaire complète : ${site.url}${brochures.garde}
 
 ## Conseil à l'adoption
 Avant, pendant et après l'adoption, sur toute l'${site.zone.departement}.
 ${adoption.join("\n")}
+Brochure tarifaire complète : ${site.url}${brochures.adoption}
 
 ## Contact
 - Téléphone : ${site.contact.phone}

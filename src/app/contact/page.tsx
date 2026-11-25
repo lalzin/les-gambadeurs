@@ -60,13 +60,13 @@ export default function Contact() {
               label: "Par téléphone ou message",
               valeur: site.contact.phone,
               href: `tel:${site.contact.phoneHref}`,
-              note: "Du lundi au samedi. Si je ne réponds pas, je suis avec un animal. Laissez-moi un message ou un SMS.",
+              note: "Du lundi au samedi. Si je ne réponds pas, je suis avec un animal. Laissez-moi un message vocal ou un SMS.",
             },
             {
               label: "Par e-mail",
               valeur: site.contact.email,
               href: `mailto:${site.contact.email}`,
-              note: "Réponse sous 24 à 48 h. Précisez vos dates et l'espèce concernée, ça fait gagner un aller-retour.",
+              note: "Réponse sous 24 à 48 h. Précisez vos besoins et l'espèce concernée, ça fait gagner un aller-retour.",
             },
           ].map((c, i) => (
             <Reveal

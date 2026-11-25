@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { Caveat, Fraunces, Outfit } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { communesGarde, fondatrice, prestationsGarde } from "@/lib/content";
+import { communesGarde, fondatrice, formulesGarde, prestationsGarde } from "@/lib/content";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -161,6 +161,16 @@ const donneesStructurees = {
     name: "ACACED : Attestation de Connaissances pour les Animaux de Compagnie d'Espèces Domestiques",
   },
   makesOffer: [
+    ...formulesGarde.map((f) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: f.nom,
+        description: `${f.visite.titre} (${f.visite.pour}) ou ${f.promenade.titre.toLowerCase()} (${f.promenade.pour}), trajet inclus.`,
+        serviceType: "Garde d'animaux",
+        url: `${site.url}/garde-d-animaux`,
+      },
+    })),
     ...prestationsGarde.map((p) => ({
       "@type": "Offer",
       itemOffered: {

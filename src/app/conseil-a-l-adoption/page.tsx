@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import {
   BandeauRdv,
   Bouton,
+  BoutonTelechargement,
   CartePrestation,
   BadgeOffre,
   EntetePage,
@@ -14,11 +15,13 @@ import {
 } from "@/components/Ui";
 import {
   adoptionPourquoi,
+  brochures,
   communes,
   offreLancement,
   photos,
   prestationsAdoption,
   prestationsAdoptionApres,
+  prixSchema,
 } from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -57,7 +60,7 @@ const serviceSchema = {
       itemOffered: { "@type": "Service", name: p.nom, description: p.detail },
       ...(p.prixPromo || (p.prix && p.prix !== "Offert")
         ? {
-            price: (p.prixPromo ?? p.prix ?? "").replace(/[^\d]/g, ""),
+            price: prixSchema((offreLancement.actif && p.prixPromo) || p.prix || ""),
             priceCurrency: "EUR",
           }
         : {}),
@@ -151,13 +154,14 @@ export default function ConseilAdoption() {
             ))}
           </div>
 
-          <Reveal delai={140}>
-            <div className="mt-10 flex items-start gap-4">
-              <Annotation direction="droite" className="max-w-[260px]" rotation={-2}>
+          {/* Note manuscrite sous le « Guide d'accueil personnalisé », flèche vers le bloc */}
+          <div className="mt-5 grid md:grid-cols-2">
+            <Reveal delai={140} className="md:col-start-2">
+              <Annotation direction="haut-gauche" className="ml-6 max-w-[320px]" rotation={-2}>
                 {"Vous êtes accompagné.e\npour vos premiers pas ensemble"}
               </Annotation>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
           {/* Second bloc : pendant ou juste après l'adoption */}
           <div className="mt-20 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
@@ -183,6 +187,13 @@ export default function ConseilAdoption() {
                 <CartePrestation key={p.id} p={p} index={i} promo={offreLancement.actif} />
               ))}
             </div>
+            <Reveal delai={100}>
+              <div className="mt-10">
+                <BoutonTelechargement href={brochures.adoption}>
+                  Télécharger la brochure tarifaire complète des prestations de Conseil
+                </BoutonTelechargement>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

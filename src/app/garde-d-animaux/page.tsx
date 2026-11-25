@@ -3,17 +3,32 @@ import Annotation from "@/components/Annotation";
 import { Champ, Epi, Patte } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
 import {
+  BadgeOffre,
   BandeauRdv,
   Bouton,
+  BoutonTelechargement,
+  CarteFormuleGarde,
   CartePrestation,
   EntetePage,
   ListeCommunes,
   PhotoArche,
   TitreSection,
 } from "@/components/Ui";
-import { communesGarde, gardeDeroule, photos, prestationsGarde } from "@/lib/content";
+import {
+  brochures,
+  communesGarde,
+  formulesGarde,
+  gardeDeroule,
+  offreLancement,
+  photos,
+  prestationsGarde,
+  prixSchema,
+} from "@/lib/content";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
+
+/** L'offre de lancement s'éteint seule : la page est régénérée toutes les heures. */
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Garde chien, chat et NAC au nord de Rennes",
@@ -39,10 +54,28 @@ const serviceSchema = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Prestations de garde",
-    itemListElement: prestationsGarde.map((p) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: p.nom, description: p.detail },
-    })),
+    itemListElement: [
+      ...formulesGarde.map((f) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: f.nom,
+          description: `${f.visite.detail} ${f.promenade.detail}`,
+        },
+        price: prixSchema(offreLancement.actif ? f.prixPromo : f.prix),
+        priceCurrency: "EUR",
+      })),
+      ...prestationsGarde.map((p) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: p.nom.replace(/[«»]/g, "").trim(), description: p.detail },
+        ...(p.prix
+          ? {
+              price: prixSchema(offreLancement.actif && p.prixPromo ? p.prixPromo : p.prix),
+              priceCurrency: "EUR",
+            }
+          : {}),
+      })),
+    ],
   },
 };
 
@@ -63,17 +96,38 @@ export default function GardeAnimaux() {
       {/* PRESTATIONS                                                  */}
       {/* ============================================================ */}
       <section className="mx-auto max-w-[1240px] px-5 pt-16 sm:px-8 sm:pt-24">
-        <TitreSection
-          surtitre="Les prestations"
-          titre="Ce que je propose."
-          intro="Chaque formule s'adapte à l'espèce, à l'âge et au caractère de votre animal. La fréquence, la durée et le tarif se calent lors du premier échange, qui est offert."
-        />
+        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+          <TitreSection
+            surtitre="Les prestations"
+            titre="Ce que je propose."
+            intro="Chaque formule s'adapte à l'espèce, à l'âge et au caractère de votre animal. Les détails se calent lors du premier échange, qui est offert."
+          />
+          {offreLancement.actif && (
+            <Reveal delai={120} className="shrink-0">
+              <BadgeOffre remise={offreLancement.remise} jusquau={offreLancement.jusquau} />
+            </Reveal>
+          )}
+        </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {prestationsGarde.map((p, i) => (
-            <CartePrestation key={p.id} p={p} index={i} />
+        <div className="mt-14 space-y-6">
+          {formulesGarde.map((f, i) => (
+            <CarteFormuleGarde key={f.id} f={f} index={i} promo={offreLancement.actif} />
           ))}
         </div>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {prestationsGarde.map((p, i) => (
+            <CartePrestation key={p.id} p={p} index={i} promo={offreLancement.actif} />
+          ))}
+        </div>
+
+        <Reveal delai={100}>
+          <div className="mt-10">
+            <BoutonTelechargement href={brochures.garde}>
+              Télécharger la brochure tarifaire complète des prestations de Garde d&apos;animaux
+            </BoutonTelechargement>
+          </div>
+        </Reveal>
 
         <Reveal delai={120}>
           <div className="mt-10 flex flex-col items-start gap-6 rounded-[26px] border border-dashed border-sable/50 bg-creme/50 p-7 sm:flex-row sm:items-center sm:justify-between">

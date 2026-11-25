@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Champ, Patte, Tournesol } from "@/components/Botanique";
 import Reveal from "@/components/Reveal";
-import type { Prestation } from "@/lib/content";
+import type { formulesGarde, Prestation } from "@/lib/content";
 import { site } from "@/lib/site";
 
 /* ------------------------------------------------------------------ */
@@ -168,17 +168,113 @@ export function CartePrestation({
 
       <div className="mt-7 flex items-end justify-between gap-3">
         {p.prix === null ? (
-          <span className="text-[15px] text-brun/70 italic">Tarif sur demande</span>
-        ) : aPromo ? (
-          <span className="flex items-baseline gap-2.5">
-            <span className="text-brun/45 line-through">{p.prix}</span>
-            <span className="titre text-[30px] text-terre">{p.prixPromo}</span>
-          </span>
+          <span className="text-[15px] text-brun/70 italic">{p.prixTexte ?? "Tarif sur demande"}</span>
         ) : (
-          <span className="titre text-[30px] text-terre">{p.prix}</span>
+          <Prix prix={p.prix} promo={aPromo ? p.prixPromo : null} />
         )}
       </div>
     </Reveal>
+  );
+}
+
+/** Prix affiché, toujours suivi de « TTC » (sauf « Offert »), barré si promo. */
+export function Prix({
+  prix,
+  promo,
+  taille = "text-[30px]",
+}: {
+  prix: string;
+  promo?: string | null;
+  taille?: string;
+}) {
+  const ttc = prix !== "Offert";
+  return (
+    <span className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+      {promo ? (
+        <>
+          <span className="text-brun/45 line-through">{prix}</span>
+          <span className={`titre text-terre ${taille}`}>{promo}</span>
+        </>
+      ) : (
+        <span className={`titre text-terre ${taille}`}>{prix}</span>
+      )}
+      {ttc && <span className="text-[12px] tracking-[0.14em] text-sable-fonce uppercase">TTC</span>}
+    </span>
+  );
+}
+
+/** Grand bloc « Visite ou promenade » : deux volets côte à côte, un seul prix. */
+export function CarteFormuleGarde({
+  f,
+  promo = false,
+  index = 0,
+}: {
+  f: (typeof formulesGarde)[number];
+  promo?: boolean;
+  index?: number;
+}) {
+  const volets = [f.visite, f.promenade];
+  return (
+    <Reveal
+      delai={index * 90}
+      className="relative overflow-hidden rounded-[28px] border border-brun/12 bg-papier transition-[box-shadow,border-color] duration-500 hover:border-brun/25 hover:shadow-[0_30px_60px_-40px_var(--color-brun)]"
+    >
+      <div className="flex flex-col gap-4 border-b border-brun/10 px-7 py-6 sm:flex-row sm:items-end sm:justify-between sm:px-9">
+        <div>
+          <p className="text-[12px] tracking-[0.14em] text-sable-fonce uppercase">Trajet inclus</p>
+          <h3 className="titre mt-2 text-[clamp(1.6rem,3vw,2.1rem)] leading-tight">{f.nom}</h3>
+        </div>
+        <Prix prix={f.prix} promo={promo ? f.prixPromo : null} taille="text-[36px]" />
+      </div>
+      <div className="grid md:grid-cols-2">
+        {volets.map((v, i) => (
+          <div
+            key={v.titre}
+            className={`flex flex-col px-7 py-7 sm:px-9 ${i === 1 ? "border-t border-brun/10 md:border-t-0 md:border-l" : ""}`}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h4 className="titre text-[22px] leading-tight">{v.titre}</h4>
+                <p className="mt-1.5 text-[12px] tracking-[0.14em] text-sable-fonce uppercase">{v.pour}</p>
+              </div>
+              <Patte className="mt-1 h-5 w-5 shrink-0 text-lin" />
+            </div>
+            <p className="prose-gambadeurs mt-4 text-[15px]">{v.detail}</p>
+            <ul className="mt-5 space-y-2">
+              {v.inclus.map((x) => (
+                <li key={x} className="flex gap-2.5 text-[13.5px] text-encre/72">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-olive" />
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Reveal>
+  );
+}
+
+/** Bouton de téléchargement d'une brochure PDF. */
+export function BoutonTelechargement({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      download
+      className="group inline-flex items-center gap-3 rounded-full border border-brun/25 px-6 py-3.5 text-[14px] font-medium text-brun transition-all duration-400 hover:border-brun hover:bg-brun hover:text-creme"
+    >
+      <svg viewBox="0 0 20 20" className="h-4 w-4 shrink-0" fill="none" aria-hidden="true">
+        <path
+          d="M10 3v10m0 0-4-4m4 4 4-4M4 16h12"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {children}
+      <span className="text-[12px] font-normal opacity-70">(PDF)</span>
+    </a>
   );
 }
 

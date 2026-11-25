@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageTexte, { BlocTexte } from "@/components/PageTexte";
-import { entreprise, mediateur, ou } from "@/lib/legal";
+import { cooperative, entreprise, mediateur, ou } from "@/lib/legal";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -36,7 +36,8 @@ export default function ConditionsGenerales() {
       <BlocTexte titre="1. Objet">
         <p>
           Les présentes conditions régissent les prestations proposées par{" "}
-          {entreprise.raisonSociale} : garde d&apos;animaux de compagnie à domicile (visites,
+          {cooperative.entrepreneure}, {cooperative.enseigne} ({cooperative.statut} de la coopérative{" "}
+          {entreprise.raisonSociale}) : garde d&apos;animaux de compagnie à domicile (visites,
           promenades, séjours, transport) et conseil à l&apos;adoption. Toute réservation implique
           leur acceptation sans réserve.
         </p>
@@ -64,7 +65,7 @@ export default function ConditionsGenerales() {
         </p>
         <p>
           {entreprise.tva.trim()
-            ? `Les prix s'entendent hors taxes, TVA en sus (n° ${entreprise.tva}).`
+            ? "Les prix sont indiqués toutes taxes comprises (TTC)."
             : entreprise.mentionFranchiseTva}{" "}
           Les frais engagés pour le compte du client (nourriture, litière, consultation vétérinaire)
           lui sont refacturés à l&apos;euro près, sur présentation des justificatifs.

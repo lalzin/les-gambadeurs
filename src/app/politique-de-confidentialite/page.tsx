@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageTexte, { BlocTexte, ListeInfos } from "@/components/PageTexte";
-import { entreprise, ou } from "@/lib/legal";
+import { cooperative, entreprise, ou } from "@/lib/legal";
 import { openGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -22,12 +22,12 @@ export default function Confidentialite() {
       titre="Politique de confidentialité"
       href="/politique-de-confidentialite"
       chapo="Ce site collecte le strict minimum. Aucune publicité, aucun traçage, aucune revente de données. Voici précisément ce qui est enregistré, pourquoi, et comment le faire supprimer."
-      maj="août 2026"
+      maj="novembre 2026"
     >
       <BlocTexte titre="Responsable du traitement">
         <ListeInfos
           lignes={[
-            ["Responsable", entreprise.raisonSociale],
+            ["Responsable", `${cooperative.entrepreneure}, ${cooperative.enseigne} (CAE ${entreprise.raisonSociale})`],
             ["Adresse", ou(entreprise.adresse, `${site.zone.ville} (35), ${site.zone.departement}`)],
             ["Contact", site.contact.email],
           ]}

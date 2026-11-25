@@ -78,12 +78,10 @@ export const piliers = [
 /* ------------------------------------------------------------------ */
 
 /**
- * ⚠️ À COMPLÉTER — La brochure tarifaire « Garde d'animaux » n'était pas
- * fournie dans les documents sources (seule celle du Conseil à l'adoption
- * l'était). La structure ci-dessous est une proposition : il suffit de
- * renseigner `prix` (et `prixPromo` si l'offre de lancement s'applique)
- * pour que les tarifs s'affichent. Tant que `prix` vaut `null`, la carte
- * affiche « Sur demande ».
+ * Tarifs TTC repris de la brochure « Prestations et tarifs — Garde d'animaux ».
+ * `prixPromo` s'affiche tant que l'offre de lancement est active (voir
+ * `offreLancement` plus bas). Si `prix` vaut `null`, la carte affiche
+ * `prixTexte` (ou « Tarif sur demande »).
  */
 export type Prestation = {
   /** identifiant stable : deux prestations peuvent porter le même nom */
@@ -93,42 +91,82 @@ export type Prestation = {
   duree?: string;
   prix: string | null;
   prixPromo?: string | null;
+  /** texte affiché à la place du prix quand `prix` vaut `null` */
+  prixTexte?: string;
   inclus?: string[];
 };
 
-export const prestationsGarde: Prestation[] = [
+/** Un volet (visite ou promenade) d'une formule de garde. */
+export type VoletGarde = {
+  titre: string;
+  pour: string;
+  detail: string;
+  inclus: string[];
+};
+
+/**
+ * Visites et promenades : même tarif à durée égale, trajet inclus.
+ * Présentées en deux grands blocs (30 min, 1 h), chacun en deux volets.
+ */
+export const formulesGarde: {
+  id: string;
+  nom: string;
+  duree: string;
+  prix: string;
+  prixPromo: string;
+  visite: VoletGarde;
+  promenade: VoletGarde;
+}[] = [
   {
-    id: "visite-30",
-    nom: "Visite à domicile",
-    detail:
-      "Repas, eau fraîche, litière ou sortie hygiénique, jeu et câlins. Pour les chiens, les chats et les NACs.",
+    id: "visite-promenade-30",
+    nom: "Visite ou promenade 30 min",
     duree: "30 min",
-    prix: null,
-    inclus: ["Compte rendu photo à chaque passage", "Relevé des quantités mangées et bues"],
+    prix: "22 €",
+    prixPromo: "13,20 €",
+    visite: {
+      titre: "Visite à domicile",
+      pour: "Chiens, chats, NAC",
+      detail:
+        "Repas, eau fraîche, litière ou sortie hygiénique, jeu et câlins. Votre animal garde ses repères, chez lui.",
+      inclus: ["Compte rendu photo à chaque passage", "Relevé des quantités mangées et bues"],
+    },
+    promenade: {
+      titre: "Promenade",
+      pour: "Chiens",
+      detail:
+        "Une sortie pensée pour la dépense réelle du chien : reniflage, exploration, rythme choisi selon son âge et son état de forme.",
+      inclus: ["Parcours adapté à l'âge et au gabarit", "Compte rendu de balade"],
+    },
   },
   {
-    id: "visite-60",
-    nom: "Visite à domicile",
-    detail:
-      "Le même soin, avec du temps en plus : enrichissement, brossage, séance de jeu structurée, surveillance d'un traitement. Pour les chiens, les chats et les NACs.",
+    id: "visite-promenade-60",
+    nom: "Visite ou promenade 1 h",
     duree: "1 h",
-    prix: null,
-    inclus: [
-      "Compte rendu photo à chaque passage",
-      "Relevé des quantités mangées et bues",
-      "Administration de traitements",
-      "Enrichissement adapté à l'espèce",
-    ],
+    prix: "28 €",
+    prixPromo: "16,80 €",
+    visite: {
+      titre: "Visite à domicile",
+      pour: "Chiens, chats, NAC",
+      detail:
+        "Le même soin, avec du temps en plus : enrichissement, brossage, séance de jeu structurée, surveillance d'un traitement.",
+      inclus: [
+        "Compte rendu photo à chaque passage",
+        "Relevé des quantités mangées et bues",
+        "Administration de traitements",
+        "Enrichissement adapté à l'espèce",
+      ],
+    },
+    promenade: {
+      titre: "Promenade",
+      pour: "Chiens",
+      detail:
+        "Une vraie balade pour les chiens qui ont besoin de se dépenser : plus de distance, plus d'exploration, toujours à son rythme.",
+      inclus: ["Parcours adapté à l'âge et au gabarit", "Retour lavé et séché si besoin", "Compte rendu de balade"],
+    },
   },
-  {
-    id: "promenade",
-    nom: "Promenade",
-    detail:
-      "Une sortie pensée pour la dépense réelle du chien : reniflage, exploration, rythme choisi selon son âge et son état de forme.",
-    duree: "30 min à 1 h",
-    prix: null,
-    inclus: ["Parcours adapté à l'âge et au gabarit", "Retour lavé et séché si besoin", "Compte rendu de balade"],
-  },
+];
+
+export const prestationsGarde: Prestation[] = [
   {
     id: "pension",
     nom: "Pension",
@@ -136,6 +174,7 @@ export const prestationsGarde: Prestation[] = [
       "Votre animal est accueilli à mon domicile, comme un membre à part entière de ma famille. Proposée à la demi-journée, journée complète, nuitée ou séjour de plusieurs jours. Pour les chiens et les NACs uniquement.",
     duree: "Journée ou séjour",
     prix: null,
+    prixTexte: "Tarif selon durée",
     inclus: [
       "Nouvelles quotidiennes (photos et messages)",
       "Sorties, jeux et présence continue",
@@ -157,7 +196,8 @@ export const prestationsGarde: Prestation[] = [
     nom: "« Coup de frais »",
     detail: "Votre logement veillé pendant votre absence.",
     duree: "Sur mesure",
-    prix: null,
+    prix: "9 €",
+    prixPromo: "5,40 €",
     inclus: [
       "Arrosage des plantes",
       "Relève du courrier",
@@ -166,6 +206,17 @@ export const prestationsGarde: Prestation[] = [
     ],
   },
 ];
+
+/** Brochures tarifaires complètes, servies depuis /public/brochures. */
+export const brochures = {
+  garde: "/brochures/les-gambadeurs-tarifs-garde-d-animaux.pdf",
+  adoption: "/brochures/les-gambadeurs-tarifs-conseil-a-l-adoption.pdf",
+};
+
+/** « 13,20 € » → « 13.20 » pour les données structurées. */
+export function prixSchema(prix: string) {
+  return prix.replace(/[^\d,]/g, "").replace(",", ".");
+}
 
 export const gardeDeroule = [
   {
@@ -341,8 +392,8 @@ export const faqAdoption = [
   },
   {
     q: "Combien coûte l'accompagnement complet ?",
-    r: `Le premier échange téléphonique est offert. Le parcours complet (entretien découverte, livret de suggestions et guide d'accueil) revient à 140 €${
-      offreLancement.actif ? `, ramenés à 84 € pendant l'offre de lancement, jusqu'au ${offreLancement.jusquau}` : ""
+    r: `Le premier échange téléphonique est offert. Le parcours complet (entretien découverte, livret de suggestions et guide d'accueil) revient à 140 € TTC${
+      offreLancement.actif ? `, ramenés à 84 € TTC pendant l'offre de lancement, jusqu'au ${offreLancement.jusquau}` : ""
     }. Chaque étape reste indépendante.`,
   },
   {
